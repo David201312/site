@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AERA VOYAGES — Expedições Sob Medida & Roteiros Raros</title>
+  <meta name="description" content="AERA Voyages. Atelier de viagens de alta gama e expedições imersivas lapidadas nos horizontes mais extraordinários do planeta.">
+  <link rel="icon" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       FLOATING HEADER & NAVIGATION ISLAND
+       ======================================================================== -->
+  <header class="header" id="header">
+    <div class="nav-island">
+      <a class="brand" href="#top" aria-label="AERA Voyages Página Inicial">AERA<span>™</span></a>
+      <nav aria-label="Navegação Principal">
+        <a href="#destinos" class="active">Destinos</a>
+        <a href="#expedicoes">Expedições POV</a>
+        <a href="#atelier">Atelier de Roteiro</a>
+        <a href="#cinema">Cinema da Viagem</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <span class="catalog-tag">Atelier de Viagens</span>
+      <button class="cta-btn-primary" data-open-modal="true">
+        <span>Agendar Consultoria</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION — ATMOSPHERIC IMMERSION
+       ======================================================================== -->
+  <section class="hero-section" id="top">
+    <!-- Living Ambient Backgrounds -->
+    <div class="hero-background-canvas" aria-hidden="true">
+      <div class="hero-bg-image active" style="background-image: url('assets/images/coast.webp');"></div>
+      <div class="hero-bg-image" style="background-image: url('assets/images/dunes.webp');"></div>
+      <div class="hero-bg-image" style="background-image: url('assets/images/aurora.webp');"></div>
+      <div class="hero-atmosphere-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Temporada Exclusiva 2026/2027 • Vagas Limitadas</span>
+      </div>
+
+      <h1 class="intro-headline">
+        Horizontes raros.<br>
+        Jornadas sob medida.
+      </h1>
+
+      <p class="hero-quote editorial-quote">
+        “Não elaboramos apenas itinerários. Desenhamos experiências sensoriais e memórias indeléveis nos recantos mais sublimes da Terra.”
+      </p>
+
+      <div class="hero-actions">
+        <button class="film-play-btn" id="hero-play-trigger">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          <span>Assistir Filme de Expedição</span>
+        </button>
+        <a href="#destinos" class="catalog-tag">
+          <span>Explorar Destinos Exclusivos</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats-bar">
+        <div class="stat-item">
+          <span class="stat-val">+48</span>
+          <span>Expedições Privadas Globais</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">100%</span>
+          <span>Roteiros Personalizados</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">24/7</span>
+          <span>Concierge Privado Dedicado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       DESTINATIONS SECTION (SPECTRUM PRODUCT CARDS)
+       ======================================================================== -->
+  <section class="section-wrapper" id="destinos">
+    <div class="section-header-row">
+      <div>
+        <span class="eyebrow">Coleções Autorais</span>
+        <h2 class="section-title">Destinos Singulares</h2>
+        <p class="section-desc">Cada roteiro é curado com acesso exclusivo, estadias arquitetônicas de alto padrão e transporte privativo ponta a ponta.</p>
+      </div>
+      <div>
+        <span class="code-meta">AERA Design System • Spectrum Grid</span>
+      </div>
+    </div>
+
+    <!-- Category Filter Dock -->
+    <div class="dock-container">
+      <div class="category-dock" role="tablist" aria-label="Filtro de Categorias">
+        <button class="dock-pill active" data-category="all">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg>
+          <span>Todas as Jornadas</span>
+        </button>
+        <button class="dock-pill" data-category="islands">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20a7 7 0 0 1 14 0M12 4v4M4.93 7.93l2.83 2.83M19.07 7.93l-2.83 2.83"/></svg>
+          <span>Costas & Ilhas Privadas</span>
+        </button>
+        <button class="dock-pill" data-category="deserts">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <span>Desertos & Dunas</span>
+        </button>
+        <button class="dock-pill" data-category="polar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+          <span>Ártico & Auroras</span>
+        </button>
+        <button class="dock-pill" data-category="alpine">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          <span>Expedições Alpinas</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="destinations-grid">
+      <!-- Card 1: Norway -->
+      <article class="spectrum-card" data-category="polar" data-open-modal="true" data-dest-title="Fiordes da Noruega & Aurora Borealis">
+        <div class="card-picture-container">
+          <img src="assets/images/aurora.webp" alt="Fiordes da Noruega sob a Aurora Boreal" loading="lazy">
+          <span class="card-tag-floating">Ártico & Neve</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Tromsø & Ilhas Lofoten</span>
+            <span>8 Dias / 7 Noites</span>
+          </div>
+          <h3 class="card-title">Fiordes da Noruega & Aurora Borealis</h3>
+          <p class="card-description">Navegação em iate híbrido privativo pelos fiordes intocados, pernoite em iglus de vidro termal e caçadas guiadas à Aurora sob o céu polar.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$6.800 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Amalfi -->
+      <article class="spectrum-card" data-category="islands" data-open-modal="true" data-dest-title="Costa Amalfitana & Capri Secreta">
+        <div class="card-picture-container">
+          <img src="assets/images/coast.webp" alt="Falésias da Costa Amalfitana e mar azul" loading="lazy">
+          <span class="card-tag-floating">Costas & Ilhas</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Positano, Ravello & Capri</span>
+            <span>7 Dias / 6 Noites</span>
+          </div>
+          <h3 class="card-title">Costa Amalfitana & Capri Secreta</h3>
+          <p class="card-description">Vila renascentista suspensa sobre o Mar Tirreno, navegação diária em clássica lancha Riva e jantares harmonizados em adegas subterrâneas privadas.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$5.400 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Sahara -->
+      <article class="spectrum-card" data-category="deserts" data-open-modal="true" data-dest-title="Dunas de Merzouga & Deserto do Saara">
+        <div class="card-picture-container">
+          <img src="assets/images/dunes.webp" alt="Ondulações douradas das dunas do Saara sob luar" loading="lazy">
+          <span class="card-tag-floating">Desertos & Dunas</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Marrakech & Erg Chebbi</span>
+            <span>6 Dias / 5 Noites</span>
+          </div>
+          <h3 class="card-title">Dunas de Merzouga & Deserto do Saara</h3>
+          <p class="card-description">Acampamento nômade de alto luxo cercado pelo mar de areia, cavalgadas ao nascer do sol e sessão de astronomia particular com telescópio deep-sky.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$4.200 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Swiss Alps -->
+      <article class="spectrum-card" data-category="alpine" data-open-modal="true" data-dest-title="Santuário Alpino de Zermatt & Matterhorn">
+        <div class="card-picture-container">
+          <img src="assets/images/alpine.webp" alt="Picos nevados dos Alpes Suíços" loading="lazy">
+          <span class="card-tag-floating">Expedições Alpinas</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Zermatt & St. Moritz</span>
+            <span>9 Dias / 8 Noites</span>
+          </div>
+          <h3 class="card-title">Santuário Alpino de Zermatt & Matterhorn</h3>
+          <p class="card-description">Chalé sustentável com heliponto próprio, spa de águas termais geotérmicas e descidas de heli-skiing guiadas por campeões olímpicos suíços.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$7.900 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5: Maldives -->
+      <article class="spectrum-card" data-category="islands" data-open-modal="true" data-dest-title="Atóis Privados & Ilhas Maldivas">
+        <div class="card-picture-container">
+          <img src="assets/images/world.webp" alt="Atol azul turquesa com praia deserta" loading="lazy">
+          <span class="card-tag-floating">Costas & Ilhas</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Atol de Baa & Reserva UNESCO</span>
+            <span>8 Dias / 7 Noites</span>
+          </div>
+          <h3 class="card-title">Atóis Privados & Reserva das Maldivas</h3>
+          <p class="card-description">Residência overwater com piscina de borda infinita sobre o oceano, hidroavião fretado e mergulho guiado com bioluminescência marinha noturna.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$9.200 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6: Patagonia -->
+      <article class="spectrum-card" data-category="alpine" data-open-modal="true" data-dest-title="Patagônia Selvagem & Terra do Fogo">
+        <div class="card-picture-container">
+          <img src="assets/images/expedition-coast.jpg" alt="Montanhas e glaciares da Patagônia" loading="lazy">
+          <span class="card-tag-floating">Expedições Alpinas</span>
+        </div>
+        <div class="card-details-box">
+          <div class="card-meta-line">
+            <span>Torres del Paine & Ushuaia</span>
+            <span>10 Dias / 9 Noites</span>
+          </div>
+          <h3 class="card-title">Patagônia Selvagem & Terra do Fogo</h3>
+          <p class="card-description">Lodge ecológico de luxo com vista direta para os campos de gelo eterno, navegação nos canais de Beagle e expedições de trekking em terra virgem.</p>
+          <div class="card-footer-row">
+            <div class="card-price-block">
+              <span class="price-sub">Investimento</span>
+              <span class="price-val">$8.500 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+            </div>
+            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       POV FILM EXPEDITIONS (STORY CARDS)
+       ======================================================================== -->
+  <section class="section-wrapper" id="expedicoes">
+    <div class="section-header-row">
+      <div>
+        <span class="eyebrow">Documentação Sensorial</span>
+        <h2 class="section-title">Expedições POV</h2>
+        <p class="section-desc">Testemunhe as perspectivas reais captadas por nossos fotógrafos e exploradores em cada horizonte.</p>
+      </div>
+      <div>
+        <span class="code-meta">Capítulos Cinematográficos</span>
+      </div>
+    </div>
+
+    <div class="pov-grid">
+      <!-- Story 1 -->
+      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição Costa Selvagem">
+        <img src="assets/images/expedition-coast.jpg" alt="Costa sob luz crepuscular">
+        <div class="pov-play-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </div>
+        <div class="pov-overlay">
+          <span class="pov-chapter">CAPÍTULO 01 • COSTA SELVAGEM (00:24)</span>
+          <h3 class="pov-film-title">Navegação silenciosa sob falésias ao crepúsculo</h3>
+          <p class="pov-film-desc">A brisa salina e o murmúrio das correntes oceânicas nas enseadas secretas.</p>
+        </div>
+      </div>
+
+      <!-- Story 2 -->
+      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição O Silêncio das Dunas">
+        <img src="assets/images/expedition-dunes.jpg" alt="Dunas do deserto">
+        <div class="pov-play-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </div>
+        <div class="pov-overlay">
+          <span class="pov-chapter">CAPÍTULO 02 • O SILÊNCIO DAS DUNAS (00:38)</span>
+          <h3 class="pov-film-title">A imensidão dourada sob o domo das estrelas</h3>
+          <p class="pov-film-desc">Quando o vento cessa e o horizonte revela a vastidão intocada do deserto.</p>
+        </div>
+      </div>
+
+      <!-- Story 3 -->
+      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição Dança dos Céus Polares">
+        <img src="assets/images/expedition-aurora.jpg" alt="Aurora boreal nos fiordes">
+        <div class="pov-play-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </div>
+        <div class="pov-overlay">
+          <span class="pov-chapter">CAPÍTULO 03 • DANÇA POLAR (00:19)</span>
+          <h3 class="pov-film-title">O magnetismo celeste refletido em lagos de gelo</h3>
+          <p class="pov-film-desc">Cortinas esmeraldas e violetas em movimento contínuo sobre as montanhas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       INTERACTIVE TRAVEL ATELIER (SPATIAL WINDOW COMPONENT)
+       ======================================================================== -->
+  <section class="section-wrapper" id="atelier">
+    <div class="section-header-row">
+      <div>
+        <span class="eyebrow">Configurador Interativo</span>
+        <h2 class="section-title">Atelier de Roteiro Sob Medida</h2>
+        <p class="section-desc">Selecione seus interesses, duração e estilo. Nosso algoritmo inteligente e concierges de elite adaptam cada detalhe em tempo real.</p>
+      </div>
+      <div>
+        <span class="code-meta">.home-window • Spatial Workspace</span>
+      </div>
+    </div>
+
+    <div class="atelier-window">
+      <!-- Toolbar -->
+      <div class="atelier-toolbar">
+        <div class="concierge-profile">
+          <img src="assets/images/concierge-avatar.jpg" alt="Sofia Laurent" class="concierge-avatar">
+          <div>
+            <div class="concierge-title">Sofia Laurent</div>
+            <div class="concierge-role">Diretora de Expedições & Concierge Chefe</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="hero-badge" style="padding: 4px 10px; font-size: 11px;">
+            <span class="hero-badge-dot"></span>
+            <span>Atelier AERA Online</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="atelier-body">
+        <!-- Rail -->
+        <div class="atelier-rail">
+          <button class="atelier-rail-btn active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg>
+            <span>Configurador</span>
+          </button>
+          <button class="atelier-rail-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            <span>Logística Aérea</span>
+          </button>
+          <button class="atelier-rail-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>
+            <span>Estadias Singulares</span>
+          </button>
+          <button class="atelier-rail-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+            <span>Agenda Privada</span>
+          </button>
+        </div>
+
+        <!-- Center interactive choices -->
+        <div class="atelier-interactive-panel">
+          <!-- Step 1: Destination -->
+          <div class="planner-field-group">
+            <span class="planner-label">1. Escolha o Território dos Sonhos</span>
+            <div class="choice-pills">
+              <button class="choice-pill selected" data-dest-option="noruega">Noruega & Fiordes</button>
+              <button class="choice-pill" data-dest-option="italia">Costa Amalfitana</button>
+              <button class="choice-pill" data-dest-option="saara">Deserto do Saara</button>
+              <button class="choice-pill" data-dest-option="suica">Alpes Suíços</button>
+              <button class="choice-pill" data-dest-option="maldivas">Ilhas Maldivas</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Duration -->
+          <div class="planner-field-group">
+            <span class="planner-label">2. Duração Estimada da Estadia</span>
+            <div class="choice-pills">
+              <button class="choice-pill" data-duration-option="5">5 Dias (Imersão Express)</button>
+              <button class="choice-pill selected" data-duration-option="8">8 Dias (Percurso Ideal)</button>
+              <button class="choice-pill" data-duration-option="12">12 Dias (Grande Travessia)</button>
+              <button class="choice-pill" data-duration-option="16">16 Dias (Expedição Completa)</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Style -->
+          <div class="planner-field-group">
+            <span class="planner-label">3. Foco & Ritmo da Viagem</span>
+            <div class="choice-pills">
+              <button class="choice-pill selected" data-style-option="aventura" data-multiplier="1.0">Aventura & Natureza</button>
+              <button class="choice-pill" data-style-option="romance" data-multiplier="1.15">Romance & Santuários de Bem-Estar</button>
+              <button class="choice-pill" data-style-option="gastronomia" data-multiplier="1.25">Alta Gastronomia & Adegas Privadas</button>
+              <button class="choice-pill" data-style-option="fotografia" data-multiplier="1.1">Expedição Fotográfica Guiada</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Summary Sidebar -->
+        <div class="planner-summary-sidebar">
+          <div>
+            <h4 class="summary-title">Resumo do Roteiro</h4>
+            <div class="summary-spec-list">
+              <div class="spec-line">
+                <span class="spec-label">Destino</span>
+                <span class="spec-val" id="summary-dest">Fiordes & Aurora Boreal</span>
+              </div>
+              <div class="spec-line">
+                <span class="spec-label">Tempo</span>
+                <span class="spec-val" id="summary-days">8 Dias / 7 Noites</span>
+              </div>
+              <div class="spec-line">
+                <span class="spec-label">Perfil</span>
+                <span class="spec-val" id="summary-style">Aventura & Natureza</span>
+              </div>
+              <div class="spec-line">
+                <span class="spec-label">Experiências</span>
+                <span class="spec-val" id="summary-inclusions" style="text-align: right; max-width: 170px;">Iate privativo, iglu de vidro, caçada guiada</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-total-box">
+            <div class="spec-line" style="margin-bottom: 16px;">
+              <span class="spec-label">Investimento Estimado</span>
+              <span class="spec-val" id="summary-price" style="font-size: 22px; color: #fff;">$7.771</span>
+            </div>
+            <button class="cta-btn-primary" style="width: 100%; justify-content: center; height: 44px;" data-open-modal="true">
+              <span>Solicitar Roteiro Personalizado</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CINEMA PLAYER SECTION
+       ======================================================================== -->
+  <section class="section-wrapper" id="cinema">
+    <div class="section-header-row">
+      <div>
+        <span class="eyebrow">Sala de Projeção</span>
+        <h2 class="section-title">Cinema da Viagem</h2>
+        <p class="section-desc">Mergulhe na atmosfera visual de nossas expedições através do player imersivo exclusivo.</p>
+      </div>
+      <div>
+        <span class="code-meta">AERA Media Player Component</span>
+      </div>
+    </div>
+
+    <div class="cinema-player-wrapper">
+      <div class="cinema-screen">
+        <video id="cinema-video" preload="metadata" playsinline poster="assets/images/cinema-stage.jpg">
+          <source src="assets/expedition-preview.mp4" type="video/mp4">
+          Seu navegador não suporta reprodução de vídeo HTML5.
+        </video>
+        <button class="cinema-big-play" id="cinema-play-center" aria-label="Reproduzir Vídeo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
+      </div>
+
+      <div class="cinema-controls-bar">
+        <div class="cinema-timeline-track" id="cinema-timeline-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="cinema-timeline-fill" id="cinema-timeline-fill"></div>
+        </div>
+
+        <div class="cinema-controls-row">
+          <div class="cinema-btn-group">
+            <button class="cinema-control-btn" id="cinema-play-ctrl" aria-label="Play / Pause">
+              <span id="cinema-play-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </span>
+            </button>
+            <span id="cinema-timecode" style="font-family: ui-monospace, monospace; font-size: 13px;">00:00 / 00:00</span>
+          </div>
+
+          <div class="cinema-btn-group">
+            <span class="code-meta">4K HDR Spatial Master</span>
+            <button class="cinema-control-btn" id="cinema-mute-btn" aria-label="Mutar / Desmutar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+            <button class="cinema-control-btn" id="cinema-fullscreen-btn" aria-label="Tela Cheia">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       BOOKING / CONCIERGE MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="concierge-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="dialog-close-btn" data-close-modal="true" aria-label="Fechar Janela">✕</button>
+
+      <div style="margin-bottom: 24px;">
+        <span class="eyebrow">Atendimento Privativo</span>
+        <h3 id="modal-title" style="font-size: 24px; font-weight: 600; color: #fff; margin-bottom: 6px;">Consulte Nossos Especialistas</h3>
+        <p style="font-size: 14px; color: var(--grey); line-height: 1.5;">Deixe suas preferências. Um membro da equipe AERA entrará em contato em menos de 24 horas com uma proposta inicial sigilosa e detalhada.</p>
+      </div>
+
+      <form id="concierge-form">
+        <div class="form-group">
+          <label class="form-label" for="client-name">Nome Completo</label>
+          <input class="form-input" id="client-name" type="text" placeholder="Ex.: Mariana Silva" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="client-email">E-mail Corporativo ou Pessoal</label>
+          <input class="form-input" id="client-email" type="email" placeholder="mariana@exemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dest-input">Destino de Interesse</label>
+          <input class="form-input" id="modal-dest-input" type="text" value="Fiordes da Noruega & Aurora Borealis" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="client-notes">Desejos Especiais ou Restrições</label>
+          <textarea class="form-textarea" id="client-notes" rows="3" placeholder="Preferência por voo privativo, comemoração de aniversário, restrições alimentares..."></textarea>
+        </div>
+
+        <button type="submit" class="cta-btn-primary" style="width: 100%; justify-content: center; height: 46px; margin-top: 10px;">
+          <span>Transmitir Solicitação ao Concierge</span>
+          <span>→</span>
+        </button>
+      </form>
+
+      <div id="form-success-message" style="display: none; text-align: center; padding: 20px 0;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(52, 211, 153, 0.15); border: 1px solid #34d399; color: #34d399; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 24px;">✓</div>
+        <h4 style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 8px;">Solicitação Recebida com Sucesso</h4>
+        <p style="font-size: 14px; color: var(--grey); line-height: 1.5;">Seu concierge dedicado já começou a desenhar os primeiros esboços da sua jornada. Aguarde nosso contato confidencial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <a class="brand" href="#top" style="font-size: 32px;">AERA<span>™</span></a>
+        <p class="footer-desc">
+          Atelier de exploração contemporânea, logística de alta fidelidade e viagens singulares desenhadas para transformar a sua percepção do mundo.
+        </p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div>
+          <div class="footer-col-title">Coleções</div>
+          <ul class="footer-links-list">
+            <li><a href="#destinos">Costas & Ilhas</a></li>
+            <li><a href="#destinos">Desertos Sagrados</a></li>
+            <li><a href="#destinos">Ártico & Auroras</a></li>
+            <li><a href="#destinos">Expedições Alpinas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Atelier</div>
+          <ul class="footer-links-list">
+            <li><a href="#atelier">Configurador de Roteiro</a></li>
+            <li><a href="#expedicoes">Diários POV</a></li>
+            <li><a href="#cinema">Sessão Cinema</a></li>
+            <li><a href="#" data-open-modal="true">Fale com um Concierge</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">AERA Global</div>
+          <ul class="footer-links-list">
+            <li><a href="#">Paris • Rue Saint-Honoré</a></li>
+            <li><a href="#">Zurique • Bahnhofstrasse</a></li>
+            <li><a href="#">São Paulo • Jardins</a></li>
+            <li><a href="#">Tóquio • Ginza</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 AERA VOYAGES INC. Todos os direitos reservados. Construído sobre o AERA Design System.</span>
+      <div style="display: flex; gap: 20px;">
+        <a href="#" style="color: inherit; text-decoration: none;">Privacidade & Sigilo</a>
+        <a href="#" style="color: inherit; text-decoration: none;">Termos de Associação</a>
+        <a href="#" style="color: inherit; text-decoration: none;">Compromisso de Sustentabilidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

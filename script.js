@@ -1,0 +1,329 @@
+/**
+ * AERA VOYAGES — Interactive Script
+ * High-performance UI interactions & Travel Atelier Experience
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ------------------------------------------------------------------------
+     1. HERO AMBIENT BACKGROUND SLIDER
+     ------------------------------------------------------------------------ */
+  const heroBgs = document.querySelectorAll('.hero-bg-image');
+  let currentBgIndex = 0;
+
+  if (heroBgs.length > 1) {
+    setInterval(() => {
+      heroBgs[currentBgIndex].classList.remove('active');
+      currentBgIndex = (currentBgIndex + 1) % heroBgs.length;
+      heroBgs[currentBgIndex].classList.add('active');
+    }, 7000);
+  }
+
+  /* ------------------------------------------------------------------------
+     2. CATEGORY DOCK FILTER (DESTINATIONS)
+     ------------------------------------------------------------------------ */
+  const dockButtons = document.querySelectorAll('.dock-pill');
+  const destinationCards = document.querySelectorAll('.spectrum-card');
+
+  dockButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      dockButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const filterCategory = button.getAttribute('data-category');
+
+      destinationCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (filterCategory === 'all' || cardCategory === filterCategory) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 250);
+        }
+      });
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     3. CINEMA VIDEO PLAYER CONTROLS
+     ------------------------------------------------------------------------ */
+  const video = document.getElementById('cinema-video');
+  const playCenterBtn = document.getElementById('cinema-play-center');
+  const playControlBtn = document.getElementById('cinema-play-ctrl');
+  const playControlIcon = document.getElementById('cinema-play-icon');
+  const timelineFill = document.getElementById('cinema-timeline-fill');
+  const timelineTrack = document.getElementById('cinema-timeline-track');
+  const timecodeDisplay = document.getElementById('cinema-timecode');
+  const muteBtn = document.getElementById('cinema-mute-btn');
+  const fullscreenBtn = document.getElementById('cinema-fullscreen-btn');
+
+  function togglePlay() {
+    if (!video) return;
+    if (video.paused || video.ended) {
+      video.play();
+      if (playCenterBtn) playCenterBtn.style.opacity = '0';
+      if (playControlIcon) {
+        playControlIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      }
+    } else {
+      video.pause();
+      if (playCenterBtn) playCenterBtn.style.opacity = '1';
+      if (playControlIcon) {
+        playControlIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      }
+    }
+  }
+
+  if (playCenterBtn) playCenterBtn.addEventListener('click', togglePlay);
+  if (playControlBtn) playControlBtn.addEventListener('click', togglePlay);
+  if (video) video.addEventListener('click', togglePlay);
+
+  // Update timeline and timecode
+  if (video) {
+    video.addEventListener('timeupdate', () => {
+      if (video.duration) {
+        const progress = (video.currentTime / video.duration) * 100;
+        if (timelineFill) timelineFill.style.width = `${progress}%`;
+
+        const curMin = Math.floor(video.currentTime / 60).toString().padStart(2, '0');
+        const curSec = Math.floor(video.currentTime % 60).toString().padStart(2, '0');
+        const durMin = Math.floor(video.duration / 60).toString().padStart(2, '0');
+        const durSec = Math.floor(video.duration % 60).toString().padStart(2, '0');
+        if (timecodeDisplay) {
+          timecodeDisplay.textContent = `${curMin}:${curSec} / ${durMin}:${durSec}`;
+        }
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      if (playCenterBtn) playCenterBtn.style.opacity = '1';
+      if (playControlIcon) {
+        playControlIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      }
+    });
+  }
+
+  // Seek on timeline click
+  if (timelineTrack && video) {
+    timelineTrack.addEventListener('click', (e) => {
+      const rect = timelineTrack.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      video.currentTime = pct * video.duration;
+    });
+  }
+
+  // Mute / Unmute
+  if (muteBtn && video) {
+    muteBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      muteBtn.style.color = video.muted ? '#9c9da7' : '#fff';
+    });
+  }
+
+  // Fullscreen
+  if (fullscreenBtn && video) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      }
+    });
+  }
+
+  // Trigger cinema scroll from Hero / POV buttons
+  const heroPlayTrigger = document.getElementById('hero-play-trigger');
+  if (heroPlayTrigger) {
+    heroPlayTrigger.addEventListener('click', () => {
+      const cinemaSection = document.getElementById('cinema');
+      if (cinemaSection) {
+        cinemaSection.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          if (video && video.paused) togglePlay();
+        }, 800);
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     4. INTERACTIVE ATELIER (ITINERARY SIMULATOR)
+     ------------------------------------------------------------------------ */
+  const destinationOptions = document.querySelectorAll('[data-dest-option]');
+  const durationOptions = document.querySelectorAll('[data-duration-option]');
+  const styleOptions = document.querySelectorAll('[data-style-option]');
+
+  const summaryDest = document.getElementById('summary-dest');
+  const summaryDays = document.getElementById('summary-days');
+  const summaryStyle = document.getElementById('summary-style');
+  const summaryInclusions = document.getElementById('summary-inclusions');
+  const summaryPrice = document.getElementById('summary-price');
+
+  const destinationData = {
+    'noruega': {
+      title: 'Fiordes & Aurora Boreal',
+      country: 'Noruega',
+      basePrice: 6800,
+      inclusions: 'Iate privativo, iglu de vidro, caçada guiada'
+    },
+    'italia': {
+      title: 'Costa Amalfitana & Capri',
+      country: 'Itália',
+      basePrice: 5400,
+      inclusions: 'Vila privativa, lancha Riva, chef estrelado'
+    },
+    'saara': {
+      title: 'Dunas de Merzouga & Saara',
+      country: 'Marrocos',
+      basePrice: 4200,
+      inclusions: 'Tenda real de luxo, astrofísico particular'
+    },
+    'suica': {
+      title: 'Santuário de Zermatt & Alpes',
+      country: 'Suíça',
+      basePrice: 7900,
+      inclusions: 'Chalé com heliponto, heli-skiing e spa'
+    },
+    'maldivas': {
+      title: 'Atóis Privados & Maldivas',
+      country: 'Maldivas',
+      basePrice: 9200,
+      inclusions: 'Overwater villa, hidroavião e mergulho noturno'
+    }
+  };
+
+  let selectedDestKey = 'noruega';
+  let selectedDays = 8;
+  let selectedStyleMultiplier = 1.0;
+  let selectedStyleName = 'Aventura & Natureza';
+
+  function updateAtelierSummary() {
+    const dest = destinationData[selectedDestKey];
+    if (!dest) return;
+
+    if (summaryDest) summaryDest.textContent = dest.title;
+    if (summaryDays) summaryDays.textContent = `${selectedDays} Dias / ${selectedDays - 1} Noites`;
+    if (summaryStyle) summaryStyle.textContent = selectedStyleName;
+    if (summaryInclusions) summaryInclusions.textContent = dest.inclusions;
+
+    // Calculation: base price adjusted by days and style
+    const calculatedPrice = Math.round((dest.basePrice * (selectedDays / 7)) * selectedStyleMultiplier);
+    if (summaryPrice) summaryPrice.textContent = `$${calculatedPrice.toLocaleString('en-US')}`;
+  }
+
+  destinationOptions.forEach(pill => {
+    pill.addEventListener('click', () => {
+      destinationOptions.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedDestKey = pill.getAttribute('data-dest-option');
+      updateAtelierSummary();
+    });
+  });
+
+  durationOptions.forEach(pill => {
+    pill.addEventListener('click', () => {
+      durationOptions.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedDays = parseInt(pill.getAttribute('data-duration-option'), 10);
+      updateAtelierSummary();
+    });
+  });
+
+  styleOptions.forEach(pill => {
+    pill.addEventListener('click', () => {
+      styleOptions.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedStyleMultiplier = parseFloat(pill.getAttribute('data-multiplier') || '1.0');
+      selectedStyleName = pill.textContent.trim();
+      updateAtelierSummary();
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     5. MODAL BOOKING / INQUIRY
+     ------------------------------------------------------------------------ */
+  const modalBackdrop = document.getElementById('concierge-modal');
+  const openModalButtons = document.querySelectorAll('[data-open-modal]');
+  const closeModalButtons = document.querySelectorAll('[data-close-modal]');
+  const modalDestInput = document.getElementById('modal-dest-input');
+
+  openModalButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const destParam = btn.getAttribute('data-dest-title');
+      if (destParam && modalDestInput) {
+        modalDestInput.value = destParam;
+      } else if (modalDestInput && summaryDest) {
+        modalDestInput.value = summaryDest.textContent;
+      }
+      if (modalBackdrop) modalBackdrop.classList.add('open');
+    });
+  });
+
+  closeModalButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (modalBackdrop) modalBackdrop.classList.remove('open');
+    });
+  });
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        modalBackdrop.classList.remove('open');
+      }
+    });
+  }
+
+  // Handle form submission with instant feedback
+  const inquiryForm = document.getElementById('concierge-form');
+  const formSuccess = document.getElementById('form-success-message');
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      inquiryForm.style.display = 'none';
+      if (formSuccess) formSuccess.style.display = 'block';
+      setTimeout(() => {
+        if (modalBackdrop) modalBackdrop.classList.remove('open');
+        setTimeout(() => {
+          inquiryForm.reset();
+          inquiryForm.style.display = 'block';
+          if (formSuccess) formSuccess.style.display = 'none';
+        }, 500);
+      }, 3500);
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     6. SCROLL SPY FOR NAVIGATION
+     ------------------------------------------------------------------------ */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-island nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPos = window.scrollY + 120;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+});
