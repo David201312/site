@@ -38,9 +38,9 @@
   <section class="hero-section" id="top">
     <!-- Living Ambient Backgrounds -->
     <div class="hero-background-canvas" aria-hidden="true">
-      <div class="hero-bg-image active" style="background-image: url('assets/images/coast.webp');"></div>
-      <div class="hero-bg-image" style="background-image: url('assets/images/dunes.webp');"></div>
-      <div class="hero-bg-image" style="background-image: url('assets/images/aurora.webp');"></div>
+      <div class="hero-bg-image active" style="background-image: url('assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg');"></div>
+      <div class="hero-bg-image" style="background-image: url('assets/images/o-que-fazer-malta-Blue_Lagoon.jpg');"></div>
+      <div class="hero-bg-image" style="background-image: url('assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg');"></div>
       <div class="hero-atmosphere-overlay"></div>
     </div>
 
@@ -65,7 +65,7 @@
           <span>Assistir Filme de Expedição</span>
         </button>
         <a href="#destinos" class="catalog-tag">
-          <span>Explorar Destinos Exclusivos</span>
+          <span>Explorar Destinos no Scroll</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
       </div>
@@ -88,187 +88,162 @@
   </section>
 
   <!-- ========================================================================
-       DESTINATIONS SECTION (SPECTRUM PRODUCT CARDS)
+       DESTINATIONS SECTION (HORIZONTAL SCROLL PINNED ON MOUSE SCROLL)
        ======================================================================== -->
-  <section class="section-wrapper" id="destinos">
-    <div class="section-header-row">
-      <div>
-        <span class="eyebrow">Coleções Autorais</span>
-        <h2 class="section-title">Destinos Singulares</h2>
-        <p class="section-desc">Cada roteiro é curado com acesso exclusivo, estadias arquitetônicas de alto padrão e transporte privativo ponta a ponta.</p>
+  <div class="horizontal-scroll-section" id="destinos-scroll-section">
+    <div class="horizontal-sticky-box" id="destinos-sticky-box">
+
+      <!-- Header Row -->
+      <div class="horizontal-header-bar">
+        <div>
+          <span class="eyebrow">Coleção Autoral 2026/2027</span>
+          <h2 class="section-title" id="destinos">Destinos Singulares</h2>
+          <p class="section-desc">Desça o scroll do mouse: a tela fixa e os destinos deslizam horizontalmente da esquerda para a direita até o fim do percurso.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="code-meta" style="margin-right: 6px;">Scroll Pinned Track</span>
+          <button class="dialog-close-btn" id="dest-prev-btn" aria-label="Destino Anterior" style="position: static; width: 38px; height: 38px;">←</button>
+          <button class="dialog-close-btn" id="dest-next-btn" aria-label="Próximo Destino" style="position: static; width: 38px; height: 38px;">→</button>
+        </div>
       </div>
-      <div>
-        <span class="code-meta">AERA Design System • Spectrum Grid</span>
+
+      <!-- Horizontal Cards Track Container -->
+      <div class="horizontal-track-container">
+        <div class="horizontal-cards-track" id="destinos-cards-track">
+
+          <!-- Card 1: Santorini (Grécia) -->
+          <article class="horizontal-scroll-card" data-open-modal="true" data-dest-title="Santorini & Domos de Oia (Grécia)">
+            <div class="card-picture-container">
+              <img src="assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg" alt="Santorini com cúpulas azuis e mar Egeu" loading="lazy">
+              <span class="card-tag-floating">Mediterrâneo Exclusivo</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-line">
+                <span>Oia & Caldeira, Grécia</span>
+                <span>7 Dias / 6 Noites</span>
+              </div>
+              <h3 class="card-title">Santorini & Domos Azuis de Oia</h3>
+              <p class="card-description">Vila privativa sobre os penhascos da caldeira vulcânica com piscina infinita aquecida, cruzeiro privativo em catamarã ao pôr do sol e degustações de vinhos assyrtiko.</p>
+              <div class="card-footer-row">
+                <div class="card-price-block">
+                  <span class="price-sub">Investimento</span>
+                  <span class="price-val">$5.800 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+                </div>
+                <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Malta (Blue Lagoon) -->
+          <article class="horizontal-scroll-card" data-open-modal="true" data-dest-title="Blue Lagoon & Ilhas Maltesas (Malta)">
+            <div class="card-picture-container">
+              <img src="assets/images/o-que-fazer-malta-Blue_Lagoon.jpg" alt="Águas cristalinas da Blue Lagoon em Malta" loading="lazy">
+              <span class="card-tag-floating">Costas & Ilhas Secretas</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-line">
+                <span>Comino & Valletta, Malta</span>
+                <span>6 Dias / 5 Noites</span>
+              </div>
+              <h3 class="card-title">Blue Lagoon & Ilhas Maltesas</h3>
+              <p class="card-description">Navegação privativa pelas águas azul-turquesa de Comino, hospedagem em palacete barroco tombado do século XVI em Valletta e mergulho exclusivo em cavernas marítimas.</p>
+              <div class="card-footer-row">
+                <div class="card-price-block">
+                  <span class="price-sub">Investimento</span>
+                  <span class="price-val">$4.900 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+                </div>
+                <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Tokyo & Mount Fuji (Japão) -->
+          <article class="horizontal-scroll-card" data-open-modal="true" data-dest-title="Tóquio Futurista & Monte Fuji (Japão)">
+            <div class="card-picture-container">
+              <img src="assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg" alt="Rua de Tóquio com néon e vista do Monte Fuji" loading="lazy">
+              <span class="card-tag-floating">Cultura & Vanguarda</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-line">
+                <span>Tokyo, Kyoto & Hakone, Japão</span>
+                <span>10 Dias / 9 Noites</span>
+              </div>
+              <h3 class="card-title">Tóquio Futurista & Monte Fuji</h3>
+              <p class="card-description">Ryokan tradicional de luxo com termas onsen privativas de frente para o Monte Fuji, acesso exclusivo a santuários xintoístas e jantares kaiseki 3 estrelas Michelin.</p>
+              <div class="card-footer-row">
+                <div class="card-price-block">
+                  <span class="price-sub">Investimento</span>
+                  <span class="price-val">$8.600 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+                </div>
+                <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Paris (França) -->
+          <article class="horizontal-scroll-card" data-open-modal="true" data-dest-title="Paris de Alta Costura & Castelos do Loire (França)">
+            <div class="card-picture-container">
+              <img src="assets/images/guia-destinos-voesimples-europa-franca-paris-400x400.jpg" alt="Torre Eiffel em Paris" loading="lazy">
+              <span class="card-tag-floating">Alta Gastronomia & Arte</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-line">
+                <span>Paris & Vale do Loire, França</span>
+                <span>8 Dias / 7 Noites</span>
+              </div>
+              <h3 class="card-title">Paris Alta Costura & Vale do Loire</h3>
+              <p class="card-description">Suíte com terraço panorâmico privativo para a Torre Eiffel, visita exclusiva noturna às galerias do Louvre e sobrevoo de helicóptero sobre os castelos renascentistas.</p>
+              <div class="card-footer-row">
+                <div class="card-price-block">
+                  <span class="price-sub">Investimento</span>
+                  <span class="price-val">$7.200 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+                </div>
+                <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Berlin (Alemanha) -->
+          <article class="horizontal-scroll-card" data-open-modal="true" data-dest-title="Berlim Contemporânea & Bauhaus (Alemanha)">
+            <div class="card-picture-container">
+              <img src="assets/images/images.jpg" alt="Berlim ao entardecer com a Fernsehturm iluminada" loading="lazy">
+              <span class="card-tag-floating">Arquitetura & Design</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-line">
+                <span>Mitte & Rio Spree, Berlim</span>
+                <span>6 Dias / 5 Noites</span>
+              </div>
+              <h3 class="card-title">Berlim Contemporânea & Bauhaus</h3>
+              <p class="card-description">Penthouse de vanguarda no bairro Mitte com vista para a icônica Fernsehturm, curadoria privada com galeristas de arte contemporânea e navegação solar no Rio Spree.</p>
+              <div class="card-footer-row">
+                <div class="card-price-block">
+                  <span class="price-sub">Investimento</span>
+                  <span class="price-val">$4.600 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
+                </div>
+                <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
-    </div>
 
-    <!-- Category Filter Dock -->
-    <div class="dock-container">
-      <div class="category-dock" role="tablist" aria-label="Filtro de Categorias">
-        <button class="dock-pill active" data-category="all">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg>
-          <span>Todas as Jornadas</span>
-        </button>
-        <button class="dock-pill" data-category="islands">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20a7 7 0 0 1 14 0M12 4v4M4.93 7.93l2.83 2.83M19.07 7.93l-2.83 2.83"/></svg>
-          <span>Costas & Ilhas Privadas</span>
-        </button>
-        <button class="dock-pill" data-category="deserts">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <span>Desertos & Dunas</span>
-        </button>
-        <button class="dock-pill" data-category="polar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
-          <span>Ártico & Auroras</span>
-        </button>
-        <button class="dock-pill" data-category="alpine">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
-          <span>Expedições Alpinas</span>
-        </button>
+      <!-- Horizontal Progress Footer -->
+      <div class="horizontal-progress-bar-wrap">
+        <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+          <div class="horizontal-progress-line">
+            <div class="horizontal-progress-line-fill" id="destinos-progress-fill"></div>
+          </div>
+          <span class="code-meta" id="destinos-progress-count">01 / 05</span>
+        </div>
+        <div class="scroll-direction-hint">
+          <span>↓ Role o mouse para avançar pela galeria de destinos</span>
+        </div>
       </div>
+
     </div>
-
-    <!-- Cards Grid -->
-    <div class="destinations-grid">
-      <!-- Card 1: Norway -->
-      <article class="spectrum-card" data-category="polar" data-open-modal="true" data-dest-title="Fiordes da Noruega & Aurora Borealis">
-        <div class="card-picture-container">
-          <img src="assets/images/aurora.webp" alt="Fiordes da Noruega sob a Aurora Boreal" loading="lazy">
-          <span class="card-tag-floating">Ártico & Neve</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Tromsø & Ilhas Lofoten</span>
-            <span>8 Dias / 7 Noites</span>
-          </div>
-          <h3 class="card-title">Fiordes da Noruega & Aurora Borealis</h3>
-          <p class="card-description">Navegação em iate híbrido privativo pelos fiordes intocados, pernoite em iglus de vidro termal e caçadas guiadas à Aurora sob o céu polar.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$6.800 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 2: Amalfi -->
-      <article class="spectrum-card" data-category="islands" data-open-modal="true" data-dest-title="Costa Amalfitana & Capri Secreta">
-        <div class="card-picture-container">
-          <img src="assets/images/coast.webp" alt="Falésias da Costa Amalfitana e mar azul" loading="lazy">
-          <span class="card-tag-floating">Costas & Ilhas</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Positano, Ravello & Capri</span>
-            <span>7 Dias / 6 Noites</span>
-          </div>
-          <h3 class="card-title">Costa Amalfitana & Capri Secreta</h3>
-          <p class="card-description">Vila renascentista suspensa sobre o Mar Tirreno, navegação diária em clássica lancha Riva e jantares harmonizados em adegas subterrâneas privadas.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$5.400 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 3: Sahara -->
-      <article class="spectrum-card" data-category="deserts" data-open-modal="true" data-dest-title="Dunas de Merzouga & Deserto do Saara">
-        <div class="card-picture-container">
-          <img src="assets/images/dunes.webp" alt="Ondulações douradas das dunas do Saara sob luar" loading="lazy">
-          <span class="card-tag-floating">Desertos & Dunas</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Marrakech & Erg Chebbi</span>
-            <span>6 Dias / 5 Noites</span>
-          </div>
-          <h3 class="card-title">Dunas de Merzouga & Deserto do Saara</h3>
-          <p class="card-description">Acampamento nômade de alto luxo cercado pelo mar de areia, cavalgadas ao nascer do sol e sessão de astronomia particular com telescópio deep-sky.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$4.200 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 4: Swiss Alps -->
-      <article class="spectrum-card" data-category="alpine" data-open-modal="true" data-dest-title="Santuário Alpino de Zermatt & Matterhorn">
-        <div class="card-picture-container">
-          <img src="assets/images/alpine.webp" alt="Picos nevados dos Alpes Suíços" loading="lazy">
-          <span class="card-tag-floating">Expedições Alpinas</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Zermatt & St. Moritz</span>
-            <span>9 Dias / 8 Noites</span>
-          </div>
-          <h3 class="card-title">Santuário Alpino de Zermatt & Matterhorn</h3>
-          <p class="card-description">Chalé sustentável com heliponto próprio, spa de águas termais geotérmicas e descidas de heli-skiing guiadas por campeões olímpicos suíços.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$7.900 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 5: Maldives -->
-      <article class="spectrum-card" data-category="islands" data-open-modal="true" data-dest-title="Atóis Privados & Ilhas Maldivas">
-        <div class="card-picture-container">
-          <img src="assets/images/world.webp" alt="Atol azul turquesa com praia deserta" loading="lazy">
-          <span class="card-tag-floating">Costas & Ilhas</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Atol de Baa & Reserva UNESCO</span>
-            <span>8 Dias / 7 Noites</span>
-          </div>
-          <h3 class="card-title">Atóis Privados & Reserva das Maldivas</h3>
-          <p class="card-description">Residência overwater com piscina de borda infinita sobre o oceano, hidroavião fretado e mergulho guiado com bioluminescência marinha noturna.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$9.200 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 6: Patagonia -->
-      <article class="spectrum-card" data-category="alpine" data-open-modal="true" data-dest-title="Patagônia Selvagem & Terra do Fogo">
-        <div class="card-picture-container">
-          <img src="assets/images/expedition-coast.jpg" alt="Montanhas e glaciares da Patagônia" loading="lazy">
-          <span class="card-tag-floating">Expedições Alpinas</span>
-        </div>
-        <div class="card-details-box">
-          <div class="card-meta-line">
-            <span>Torres del Paine & Ushuaia</span>
-            <span>10 Dias / 9 Noites</span>
-          </div>
-          <h3 class="card-title">Patagônia Selvagem & Terra do Fogo</h3>
-          <p class="card-description">Lodge ecológico de luxo com vista direta para os campos de gelo eterno, navegação nos canais de Beagle e expedições de trekking em terra virgem.</p>
-          <div class="card-footer-row">
-            <div class="card-price-block">
-              <span class="price-sub">Investimento</span>
-              <span class="price-val">$8.500 <small style="font-size: 11px; font-weight: normal; color: var(--grey);">/ pessoa</small></span>
-            </div>
-            <span class="card-cta-link">Explorar Roteiro <span>→</span></span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
+  </div>
 
   <!-- ========================================================================
        POV FILM EXPEDITIONS (STORY CARDS)
@@ -386,13 +361,13 @@
         <div class="atelier-interactive-panel">
           <!-- Step 1: Destination -->
           <div class="planner-field-group">
-            <span class="planner-label">1. Escolha o Território dos Sonhos</span>
+            <span class="planner-label">1. Escolha o Destino Selecionado</span>
             <div class="choice-pills">
-              <button class="choice-pill selected" data-dest-option="noruega">Noruega & Fiordes</button>
-              <button class="choice-pill" data-dest-option="italia">Costa Amalfitana</button>
-              <button class="choice-pill" data-dest-option="saara">Deserto do Saara</button>
-              <button class="choice-pill" data-dest-option="suica">Alpes Suíços</button>
-              <button class="choice-pill" data-dest-option="maldivas">Ilhas Maldivas</button>
+              <button class="choice-pill selected" data-dest-option="santorini">Santorini (Grécia)</button>
+              <button class="choice-pill" data-dest-option="malta">Blue Lagoon (Malta)</button>
+              <button class="choice-pill" data-dest-option="toquio">Tóquio (Japão)</button>
+              <button class="choice-pill" data-dest-option="paris">Paris (França)</button>
+              <button class="choice-pill" data-dest-option="berlim">Berlim (Alemanha)</button>
             </div>
           </div>
 
@@ -401,9 +376,9 @@
             <span class="planner-label">2. Duração Estimada da Estadia</span>
             <div class="choice-pills">
               <button class="choice-pill" data-duration-option="5">5 Dias (Imersão Express)</button>
-              <button class="choice-pill selected" data-duration-option="8">8 Dias (Percurso Ideal)</button>
-              <button class="choice-pill" data-duration-option="12">12 Dias (Grande Travessia)</button>
-              <button class="choice-pill" data-duration-option="16">16 Dias (Expedição Completa)</button>
+              <button class="choice-pill selected" data-duration-option="7">7 Dias (Percurso Ideal)</button>
+              <button class="choice-pill" data-duration-option="10">10 Dias (Grande Travessia)</button>
+              <button class="choice-pill" data-duration-option="14">14 Dias (Expedição Completa)</button>
             </div>
           </div>
 
@@ -426,11 +401,11 @@
             <div class="summary-spec-list">
               <div class="spec-line">
                 <span class="spec-label">Destino</span>
-                <span class="spec-val" id="summary-dest">Fiordes & Aurora Boreal</span>
+                <span class="spec-val" id="summary-dest">Santorini & Domos de Oia</span>
               </div>
               <div class="spec-line">
                 <span class="spec-label">Tempo</span>
-                <span class="spec-val" id="summary-days">8 Dias / 7 Noites</span>
+                <span class="spec-val" id="summary-days">7 Dias / 6 Noites</span>
               </div>
               <div class="spec-line">
                 <span class="spec-label">Perfil</span>
@@ -438,7 +413,7 @@
               </div>
               <div class="spec-line">
                 <span class="spec-label">Experiências</span>
-                <span class="spec-val" id="summary-inclusions" style="text-align: right; max-width: 170px;">Iate privativo, iglu de vidro, caçada guiada</span>
+                <span class="spec-val" id="summary-inclusions" style="text-align: right; max-width: 170px;">Vila na caldeira, piscina infinita e catamarã ao pôr do sol</span>
               </div>
             </div>
           </div>
@@ -446,7 +421,7 @@
           <div class="summary-total-box">
             <div class="spec-line" style="margin-bottom: 16px;">
               <span class="spec-label">Investimento Estimado</span>
-              <span class="spec-val" id="summary-price" style="font-size: 22px; color: #fff;">$7.771</span>
+              <span class="spec-val" id="summary-price" style="font-size: 22px; color: #fff;">$5.800</span>
             </div>
             <button class="cta-btn-primary" style="width: 100%; justify-content: center; height: 44px;" data-open-modal="true">
               <span>Solicitar Roteiro Personalizado</span>
@@ -539,7 +514,7 @@
 
         <div class="form-group">
           <label class="form-label" for="modal-dest-input">Destino de Interesse</label>
-          <input class="form-input" id="modal-dest-input" type="text" value="Fiordes da Noruega & Aurora Borealis" required>
+          <input class="form-input" id="modal-dest-input" type="text" value="Santorini & Domos de Oia (Grécia)" required>
         </div>
 
         <div class="form-group">
@@ -575,12 +550,13 @@
 
       <div class="footer-links-grid">
         <div>
-          <div class="footer-col-title">Coleções</div>
+          <div class="footer-col-title">Destinos</div>
           <ul class="footer-links-list">
-            <li><a href="#destinos">Costas & Ilhas</a></li>
-            <li><a href="#destinos">Desertos Sagrados</a></li>
-            <li><a href="#destinos">Ártico & Auroras</a></li>
-            <li><a href="#destinos">Expedições Alpinas</a></li>
+            <li><a href="#destinos">Santorini (Grécia)</a></li>
+            <li><a href="#destinos">Blue Lagoon (Malta)</a></li>
+            <li><a href="#destinos">Tóquio & Monte Fuji (Japão)</a></li>
+            <li><a href="#destinos">Paris & Vale do Loire (França)</a></li>
+            <li><a href="#destinos">Berlim Contemporânea (Alemanha)</a></li>
           </ul>
         </div>
 

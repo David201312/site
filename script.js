@@ -1,6 +1,6 @@
 /**
  * AERA VOYAGES — Interactive Script
- * High-performance UI interactions & Travel Atelier Experience
+ * High-performance UI interactions, Horizontal Pinned Scroll & Travel Atelier
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,36 +20,75 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     2. CATEGORY DOCK FILTER (DESTINATIONS)
+     2. HORIZONTAL SCROLL DRIVEN BY VERTICAL MOUSE SCROLL
      ------------------------------------------------------------------------ */
-  const dockButtons = document.querySelectorAll('.dock-pill');
-  const destinationCards = document.querySelectorAll('.spectrum-card');
+  const scrollSection = document.getElementById('destinos-scroll-section');
+  const stickyBox = document.getElementById('destinos-sticky-box');
+  const cardsTrack = document.getElementById('destinos-cards-track');
+  const progressFill = document.getElementById('destinos-progress-fill');
+  const progressCount = document.getElementById('destinos-progress-count');
+  const prevBtn = document.getElementById('dest-prev-btn');
+  const nextBtn = document.getElementById('dest-next-btn');
 
-  dockButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      dockButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+  function updateHorizontalScroll() {
+    if (!scrollSection || !cardsTrack) return;
 
-      const filterCategory = button.getAttribute('data-category');
+    const rect = scrollSection.getBoundingClientRect();
+    const sectionHeight = scrollSection.offsetHeight;
+    const windowHeight = window.innerHeight;
 
-      destinationCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (filterCategory === 'all' || cardCategory === filterCategory) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 50);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 250);
-        }
-      });
+    // Total distance the section stays pinned while scrolling down
+    const maxScrollDistance = sectionHeight - windowHeight;
+    // Current scrolled distance into this section
+    const currentScroll = -rect.top;
+
+    // Total horizontal travel needed so all cards pass through view
+    const trackWidth = cardsTrack.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    const maxTranslate = Math.max(0, trackWidth - viewportWidth + (viewportWidth * 0.1));
+
+    if (currentScroll <= 0) {
+      cardsTrack.style.transform = 'translateX(0px)';
+      if (progressFill) progressFill.style.width = '0%';
+      if (progressCount) progressCount.textContent = '01 / 05';
+    } else if (currentScroll >= maxScrollDistance) {
+      cardsTrack.style.transform = `translateX(-${maxTranslate}px)`;
+      if (progressFill) progressFill.style.width = '100%';
+      if (progressCount) progressCount.textContent = '05 / 05';
+    } else {
+      const progress = currentScroll / maxScrollDistance;
+      const translateX = progress * maxTranslate;
+      cardsTrack.style.transform = `translateX(-${translateX}px)`;
+
+      if (progressFill) progressFill.style.width = `${progress * 100}%`;
+
+      // Active card index estimation
+      const cardCount = 5;
+      const activeIdx = Math.min(cardCount, Math.floor(progress * cardCount) + 1);
+      if (progressCount) progressCount.textContent = `0${activeIdx} / 0${cardCount}`;
+    }
+  }
+
+  window.addEventListener('scroll', updateHorizontalScroll, { passive: true });
+  window.addEventListener('resize', updateHorizontalScroll);
+  updateHorizontalScroll();
+
+  // Manual Arrow Navigation for convenience
+  if (prevBtn && nextBtn && scrollSection) {
+    prevBtn.addEventListener('click', () => {
+      const rect = scrollSection.getBoundingClientRect();
+      const currentSectionScroll = -rect.top;
+      const step = (scrollSection.offsetHeight - window.innerHeight) / 4;
+      window.scrollBy({ top: -step, behavior: 'smooth' });
     });
-  });
+
+    nextBtn.addEventListener('click', () => {
+      const rect = scrollSection.getBoundingClientRect();
+      const currentSectionScroll = -rect.top;
+      const step = (scrollSection.offsetHeight - window.innerHeight) / 4;
+      window.scrollBy({ top: step, behavior: 'smooth' });
+    });
+  }
 
   /* ------------------------------------------------------------------------
      3. CINEMA VIDEO PLAYER CONTROLS
@@ -85,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (playControlBtn) playControlBtn.addEventListener('click', togglePlay);
   if (video) video.addEventListener('click', togglePlay);
 
-  // Update timeline and timecode
   if (video) {
     video.addEventListener('timeupdate', () => {
       if (video.duration) {
@@ -110,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Seek on timeline click
   if (timelineTrack && video) {
     timelineTrack.addEventListener('click', (e) => {
       const rect = timelineTrack.getBoundingClientRect();
@@ -120,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mute / Unmute
   if (muteBtn && video) {
     muteBtn.addEventListener('click', () => {
       video.muted = !video.muted;
@@ -128,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Fullscreen
   if (fullscreenBtn && video) {
     fullscreenBtn.addEventListener('click', () => {
       if (video.requestFullscreen) {
@@ -139,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Trigger cinema scroll from Hero / POV buttons
   const heroPlayTrigger = document.getElementById('hero-play-trigger');
   if (heroPlayTrigger) {
     heroPlayTrigger.addEventListener('click', () => {
@@ -154,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     4. INTERACTIVE ATELIER (ITINERARY SIMULATOR)
+     4. INTERACTIVE ATELIER (ITINERARY SIMULATOR FOR 5 DESTINATIONS)
      ------------------------------------------------------------------------ */
   const destinationOptions = document.querySelectorAll('[data-dest-option]');
   const durationOptions = document.querySelectorAll('[data-duration-option]');
@@ -167,40 +201,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryPrice = document.getElementById('summary-price');
 
   const destinationData = {
-    'noruega': {
-      title: 'Fiordes & Aurora Boreal',
-      country: 'Noruega',
-      basePrice: 6800,
-      inclusions: 'Iate privativo, iglu de vidro, caçada guiada'
+    'santorini': {
+      title: 'Santorini & Domos de Oia',
+      country: 'Grécia',
+      basePrice: 5800,
+      inclusions: 'Vila na caldeira, piscina infinita e catamarã ao pôr do sol'
     },
-    'italia': {
-      title: 'Costa Amalfitana & Capri',
-      country: 'Itália',
-      basePrice: 5400,
-      inclusions: 'Vila privativa, lancha Riva, chef estrelado'
+    'malta': {
+      title: 'Blue Lagoon & Ilhas Maltesas',
+      country: 'Malta',
+      basePrice: 4900,
+      inclusions: 'Iate privativo pelas lagoas, palacete histórico em Valletta'
     },
-    'saara': {
-      title: 'Dunas de Merzouga & Saara',
-      country: 'Marrocos',
-      basePrice: 4200,
-      inclusions: 'Tenda real de luxo, astrofísico particular'
+    'toquio': {
+      title: 'Tóquio Futurista & Monte Fuji',
+      country: 'Japão',
+      basePrice: 8600,
+      inclusions: 'Ryokan de luxo, onsen com vista Fuji e jantar kaiseki 3★'
     },
-    'suica': {
-      title: 'Santuário de Zermatt & Alpes',
-      country: 'Suíça',
-      basePrice: 7900,
-      inclusions: 'Chalé com heliponto, heli-skiing e spa'
+    'paris': {
+      title: 'Paris Alta Costura & Castelos',
+      country: 'França',
+      basePrice: 7200,
+      inclusions: 'Suíte vista Torre Eiffel, tour noturno privado no Louvre'
     },
-    'maldivas': {
-      title: 'Atóis Privados & Maldivas',
-      country: 'Maldivas',
-      basePrice: 9200,
-      inclusions: 'Overwater villa, hidroavião e mergulho noturno'
+    'berlim': {
+      title: 'Berlim Contemporânea & Bauhaus',
+      country: 'Alemanha',
+      basePrice: 4600,
+      inclusions: 'Penthouse no Mitte, curadoria de arte e cruzeiro no Spree'
     }
   };
 
-  let selectedDestKey = 'noruega';
-  let selectedDays = 8;
+  let selectedDestKey = 'santorini';
+  let selectedDays = 7;
   let selectedStyleMultiplier = 1.0;
   let selectedStyleName = 'Aventura & Natureza';
 
@@ -213,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (summaryStyle) summaryStyle.textContent = selectedStyleName;
     if (summaryInclusions) summaryInclusions.textContent = dest.inclusions;
 
-    // Calculation: base price adjusted by days and style
     const calculatedPrice = Math.round((dest.basePrice * (selectedDays / 7)) * selectedStyleMultiplier);
     if (summaryPrice) summaryPrice.textContent = `$${calculatedPrice.toLocaleString('en-US')}`;
   }
@@ -281,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Handle form submission with instant feedback
   const inquiryForm = document.getElementById('concierge-form');
   const formSuccess = document.getElementById('form-success-message');
   if (inquiryForm) {
@@ -303,18 +335,22 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------------
      6. SCROLL SPY FOR NAVIGATION
      ------------------------------------------------------------------------ */
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('section[id], div[id="destinos-scroll-section"]');
   const navLinks = document.querySelectorAll('.nav-island nav a');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPos = window.scrollY + 120;
+    const scrollPos = window.scrollY + 140;
 
     sections.forEach(section => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
       if (scrollPos >= top && scrollPos < top + height) {
-        current = section.getAttribute('id');
+        if (section.id === 'destinos-scroll-section') {
+          current = 'destinos';
+        } else {
+          current = section.getAttribute('id');
+        }
       }
     });
 

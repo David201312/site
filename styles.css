@@ -88,16 +88,16 @@ body {
 }
 
 .section-title {
-  font-size: clamp(30px, 4vw, 56px);
+  font-size: clamp(28px, 3.8vw, 54px);
   font-weight: 600;
-  letter-spacing: -0.055em;
-  line-height: 1;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .section-desc {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--grey);
   max-width: 620px;
   line-height: 1.5;
@@ -110,7 +110,7 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--grey);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .code-meta {
@@ -284,7 +284,6 @@ body {
   overflow: hidden;
 }
 
-/* Ambient animated background */
 .hero-background-canvas {
   position: absolute;
   inset: 0;
@@ -420,87 +419,64 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   CATEGORY DOCK (NAV FILTER)
+   HORIZONTAL SCROLL SECTION (PINNED DESTINATIONS ON VERTICAL MOUSE SCROLL)
    -------------------------------------------------------------------------- */
-.dock-container {
-  display: flex;
-  justify-content: center;
-  padding: 0 var(--gutter);
-  margin-bottom: 48px;
+.horizontal-scroll-section {
+  position: relative;
+  height: 380vh; /* Travel distance for vertical scroll to slide horizontally */
+  background: var(--paper);
+}
+
+.horizontal-sticky-box {
   position: sticky;
-  top: 80px;
-  z-index: 50;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 84px 0 32px 0;
+  box-sizing: border-box;
 }
 
-.category-dock {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 32px;
-  background: rgba(20, 21, 26, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-.dock-pill {
-  height: 36px;
-  padding: 0 18px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  border: 0;
-  background: transparent;
-  color: var(--grey);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.dock-pill:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.dock-pill.active {
-  background: #fff;
-  color: #08090c;
-  font-weight: 600;
-}
-
-/* --------------------------------------------------------------------------
-   DESTINATIONS SECTION (SPECTRUM PRODUCT CARDS)
-   -------------------------------------------------------------------------- */
-.section-wrapper {
-  padding: 80px var(--gutter);
-  max-width: 1360px;
+.horizontal-header-bar {
+  padding: 0 var(--gutter);
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-}
-
-.section-header-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
+  flex-shrink: 0;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
-.destinations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 28px;
+.horizontal-track-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
-.spectrum-card {
-  background: rgba(24, 25, 28, 0.75);
+.horizontal-cards-track {
+  display: flex;
+  gap: 32px;
+  padding-left: var(--gutter);
+  padding-right: 14vw;
+  width: max-content;
+  will-change: transform;
+  transition: transform 0.08s ease-out;
+}
+
+.horizontal-scroll-card {
+  min-width: 360px;
+  width: 410px;
+  flex-shrink: 0;
+  background: rgba(22, 23, 28, 0.82);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -508,19 +484,20 @@ body {
   flex-direction: column;
   transition: all 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
   cursor: pointer;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
   position: relative;
   text-decoration: none;
   color: inherit;
 }
 
-.spectrum-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+.horizontal-scroll-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.6);
 }
 
 .card-picture-container {
-  height: 260px;
+  height: 270px;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -534,31 +511,31 @@ body {
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.spectrum-card:hover .card-picture-container img {
-  transform: scale(1.06);
+.horizontal-scroll-card:hover .card-picture-container img {
+  transform: scale(1.07);
 }
 
 .card-tag-floating {
   position: absolute;
   top: 16px;
   left: 16px;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 9999px;
-  background: rgba(8, 9, 12, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(8, 9, 12, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: #fff;
 }
 
 .card-details-box {
-  padding: 24px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
 }
 
@@ -579,7 +556,7 @@ body {
 }
 
 .card-description {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--grey);
   line-height: 1.5;
   flex: 1;
@@ -589,8 +566,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 12px;
-  padding-top: 16px;
+  margin-top: 10px;
+  padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -624,14 +601,80 @@ body {
   transition: gap 0.2s;
 }
 
-.spectrum-card:hover .card-cta-link {
+.horizontal-scroll-card:hover .card-cta-link {
   gap: 10px;
   color: #fff;
+}
+
+/* Horizontal Progress Footer */
+.horizontal-progress-bar-wrap {
+  padding: 0 var(--gutter);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 24px;
+}
+
+.horizontal-progress-line {
+  flex: 1;
+  max-width: 380px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  position: relative;
+}
+
+.horizontal-progress-line-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: width 0.08s linear;
+}
+
+.scroll-direction-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--grey);
+}
+
+.scroll-direction-hint span {
+  display: inline-block;
+  animation: bounceRight 1.5s infinite ease-in-out;
+}
+
+@keyframes bounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
 }
 
 /* --------------------------------------------------------------------------
    POV FILM EXPEDITIONS (STORY CARDS)
    -------------------------------------------------------------------------- */
+.section-wrapper {
+  padding: 100px var(--gutter);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .pov-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -1087,7 +1130,7 @@ body {
   margin-bottom: 8px;
 }
 
-.form-input, .form-textarea, .form-select {
+.form-input, .form-textarea {
   width: 100%;
   padding: 12px 16px;
   border-radius: 10px;
@@ -1100,7 +1143,7 @@ body {
   transition: border-color 0.2s;
 }
 
-.form-input:focus, .form-textarea:focus, .form-select:focus {
+.form-input:focus, .form-textarea:focus {
   border-color: var(--focus-blue);
   box-shadow: 0 0 0 2px rgba(69, 100, 220, 0.2);
 }
@@ -1202,6 +1245,13 @@ body {
   .hero-stats-bar {
     gap: 24px;
   }
+  .horizontal-scroll-card {
+    min-width: 320px;
+    width: 340px;
+  }
+  .card-picture-container {
+    height: 220px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1214,8 +1264,5 @@ body {
   }
   .cinema-screen {
     height: 320px;
-  }
-  .destinations-grid {
-    grid-template-columns: 1fr;
   }
 }

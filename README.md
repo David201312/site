@@ -4,65 +4,62 @@ Este projeto é uma réplica completa do site da **AERA**, reimaginado e transfo
 
 ---
 
-## 🧭 Conceito: AERA Voyages
+## 🧭 Nova Funcionalidade: Scroll Horizontal Pinned dos Destinos
 
-A **AERA Voyages** combina a estética minimalista, espacial e de alta fidelidade da AERA com o universo do turismo de luxo, expedições remotas e viagens ultracuradas.
+Ao navegar pela página com o **scroll do mouse**:
+1. A tela fixa (*sticky viewport*) na seção **Destinos Singulares**.
+2. Conforme você gira a roda do mouse para baixo, os cartões de destinos deslizam suavemente da **esquerda para a direita** (percorrendo Santorini, Malta, Tóquio, Paris e Berlim).
+3. Uma barra de progresso inferior acompanha o percurso (`01 / 05` até `05 / 05`).
+4. Ao concluir a galeria horizontal de destinos, a página desengata automaticamente e retoma o scroll vertical natural para as próximas seções (*Expedições POV, Atelier de Roteiro, Cinema da Viagem e Rodapé*).
 
-### 🧩 Componentes do Design System Reutilizados
+---
+
+## 📸 Destinos e Imagens Utilizadas
+
+As imagens fornecidas em `C:\Users\David\OneDrive\Imagens\imagens site` foram integradas aos cartões do catálogo:
+
+1. **Santorini & Domos Azuis de Oia (Grécia)**
+   - Arquivo: `assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg`
+   - Categoria: *Mediterrâneo Exclusivo*
+2. **Blue Lagoon & Ilhas Maltesas (Malta)**
+   - Arquivo: `assets/images/o-que-fazer-malta-Blue_Lagoon.jpg`
+   - Categoria: *Costas & Ilhas Secretas*
+3. **Tóquio Futurista & Monte Fuji (Japão)**
+   - Arquivo: `assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg`
+   - Categoria: *Cultura & Vanguarda*
+4. **Paris de Alta Costura & Vale do Loire (França)**
+   - Arquivo: `assets/images/guia-destinos-voesimples-europa-franca-paris-400x400.jpg`
+   - Categoria: *Alta Gastronomia & Arte*
+5. **Berlim Contemporânea & Bauhaus (Alemanha)**
+   - Arquivo: `assets/images/images.jpg`
+   - Categoria: *Arquitetura & Design*
+
+---
+
+## 🧩 Componentes do Design System Reutilizados
 
 1. **Floating Navigation Island (`.nav-island`)**:
-   - Barra de navegação suspensa em vidro fosco (`backdrop-filter: blur(24px)`), logotipo `AERA™`, links de ancoragem suave e pílulas de ação rápida.
-2. **Category Dock Filter (`.category-dock`, `.dock-pill`)**:
-   - Filtro dinâmico com abas em formato de pílula e ícones vetoriais inline 24x24 (`Todas as Jornadas`, `Costas & Ilhas`, `Desertos & Dunas`, `Ártico & Auroras`, `Expedições Alpinas`).
+   - Barra de navegação suspensa em vidro fosco (`backdrop-filter: blur(24px)`), logotipo `AERA™`, links de ancoragem e pílula de consultoria.
+2. **Pinned Horizontal Scroll Track (`.horizontal-scroll-section`, `.horizontal-cards-track`)**:
+   - Translação horizontal responsiva acionada pelo scroll do mouse com indicador de progresso e controles auxiliares.
 3. **Destinations Showcase (Spectrum Product Cards)**:
-   - Adaptação dos cartões de hardware da AERA para coleções de viagens exclusivas (Noruega, Costa Amalfitana, Deserto do Saara, Zermatt nos Alpes, Maldivas e Patagônia), com zoom fotográfico sutil, valores por pessoa e itinerário.
+   - Cartões com visual imersivo, zoom fotográfico ao passar o mouse, badges, investimento e itinerário.
 4. **Expedições POV (Cinematic Story Cards)**:
-   - Cartões com visual imersivo e marcadores de capítulos documentais (`CAPÍTULO 01 • COSTA SELVAGEM`, etc.).
+   - Cartões fotográficos de documentação visual com marcadores de capítulos documentais.
 5. **Atelier de Roteiro Interativo (`.atelier-window` / `.home-window`)**:
-   - Adaptação da janela de trabalho desktop com rail de navegação lateral, perfil de concierge e simulador em tempo real de investimento e perfil de viagem.
+   - Janela com barra de ferramentas, perfil de concierge chefe (*Sofia Laurent*), rail de navegação lateral e simulador interativo em tempo real para os 5 destinos.
 6. **Cinema da Viagem (`.cinema-player-wrapper`)**:
-   - Sala de projeção cinematográfica completa com vídeo real embutido (`expedition-preview.mp4`), timeline interativa (*scrubber*), contador de tempo (*timecode*), mudo/som e modo tela cheia.
+   - Player imersivo com vídeo real embutido (`expedition-preview.mp4`), timeline interativa, timecode, som e tela cheia.
 7. **Modal de Consultoria Privativa (`.modal-backdrop`, `.modal-card`, `.dialog-close-btn`)**:
    - Diálogo flutuante para agendamento de roteiro com feedback imediato.
 8. **Fundações de Cores & Tipografia**:
-   - Paleta escura de alta fidelidade: `--paper: #08090c`, `--ink: #f0f1f4`, `--blue: #5a68c9`, `--grey: #9c9da7`, `--line: #ffffff21`.
+   - Paleta escura: `--paper: #08090c`, `--ink: #f0f1f4`, `--blue: #5a68c9`, `--grey: #9c9da7`, `--line: #ffffff21`.
    - Tipografia contrastando cabeçalhos sans-serif contemporâneos com citações editoriais em *Georgia Serif*.
 
 ---
 
-## 📁 Estrutura de Arquivos
+## 🚀 Como Visualizar
 
-```text
-site/
-├── index.html                  # Página principal do site da agência
-├── styles.css                  # Estilos fieis ao AERA Design System
-├── script.js                   # Interatividade, filtros, player e simulador
-├── README.md                   # Documentação do repositório
-└── assets/
-    ├── expedition-preview.mp4  # Vídeo cinematográfico de alta definição
-    └── images/                 # Fotografias e ícones de alta resolução
-        ├── coast.webp
-        ├── dunes.webp
-        ├── aurora.webp
-        ├── alpine.webp
-        ├── world.webp
-        ├── expedition-coast.jpg
-        ├── expedition-dunes.jpg
-        ├── expedition-aurora.jpg
-        ├── cinema-stage.jpg
-        ├── planner-desk.jpg
-        ├── concierge-avatar.jpg
-        └── favicon.svg
-```
+O projeto é 100% autônomo e não depende de servidores:
 
----
-
-## 🚀 Como Executar
-
-O projeto é 100% autônomo e não depende de empacotadores ou servidores:
-
-1. **Navegador direto via `file://`**:
-   - Basta abrir o arquivo [`index.html`](./index.html) no seu navegador favorito (Google Chrome, Edge, Firefox, Safari).
-2. **Via Servidor Local (opcional)**:
-   - Com Node.js: `npx serve .`
-   - Com Python: `python -m http.server 8000`
+👉 [**Abrir AERA Voyages (`index.html`)**](./index.html)
