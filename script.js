@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AERA VOYAGES — Interactive Script
  * High-performance UI interactions, Horizontal Pinned Scroll & Travel Atelier
  */
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Voo cênico de hidroavião sobre os atóis de coral e estadia nas mais exclusivas vilas flutuantes do Oceano Índico.'
     },
     'paris': {
-      videoSrc: 'assets/oceans.mp4',
+      videoSrc: 'assets/paris.mp4',
       posterSrc: 'assets/images/guia-destinos-voesimples-europa-franca-paris-400x400.jpg',
       tag: 'Alta Gastronomia & Arte • França',
       title: 'Paris Alta Costura & Castelos do Loire',
