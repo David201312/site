@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Navegação pelas falésias vulcânicas e águas azul-índigo do Mar Egeu, com vilas privativas esculpidas na caldeira de Oia.'
     },
     'malta': {
-      videoSrc: 'assets/oceans.mp4',
+      videoSrc: 'assets/malta.mp4',
       posterSrc: 'assets/images/o-que-fazer-malta-Blue_Lagoon.jpg',
       tag: 'Costas & Ilhas Secretas • Malta',
       title: 'Blue Lagoon & Ilhas Maltesas',
