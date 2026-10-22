@@ -91,6 +91,172 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
+     2.5 RESORT SCROLL-DRIVEN RESERVATIONS EXPERIENCE
+     ------------------------------------------------------------------------ */
+  const resortSection = document.getElementById('resort-reservas');
+  const resortBgImg = document.getElementById('resort-bg-img');
+  const resortProgressBar = document.getElementById('resort-progress-bar');
+  const resortStepPills = document.querySelectorAll('.resort-step-pill');
+  const resortStatusIndicator = document.getElementById('resort-status-indicator');
+  const resortStages = [
+    document.getElementById('resort-stage-1'),
+    document.getElementById('resort-stage-2'),
+    document.getElementById('resort-stage-3'),
+    document.getElementById('resort-stage-4')
+  ];
+
+  const statusTexts = [
+    'Etapa 1 de 4 • Visão Geral & Localização • Role o mouse para descobrir acomodações e valores',
+    'Etapa 2 de 4 • Suítes de Luxo & Acomodações • Continue descendo o scroll para ver garantias',
+    'Etapa 3 de 4 • Serviços Inclusos & Políticas • Role o mouse para simular a reserva',
+    'Etapa 4 de 4 • Simulador de Reserva Imediata • Clique em Solicitar Reserva para confirmar'
+  ];
+
+  function updateResortScroll() {
+    if (!resortSection || resortStages.length === 0) return;
+
+    const rect = resortSection.getBoundingClientRect();
+    const sectionHeight = resortSection.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const maxScrollDistance = sectionHeight - windowHeight;
+    const currentScroll = -rect.top;
+
+    let progress = 0;
+    if (currentScroll <= 0) {
+      progress = 0;
+    } else if (currentScroll >= maxScrollDistance) {
+      progress = 1;
+    } else {
+      progress = currentScroll / maxScrollDistance;
+    }
+
+    // Dynamic camera dolly zoom and pan
+    if (resortBgImg) {
+      const zoom = 1 + progress * 0.12;
+      const panY = -progress * 25;
+      resortBgImg.style.transform = `scale(${zoom.toFixed(3)}) translateY(${panY.toFixed(1)}px)`;
+    }
+
+    // Progress bar fill
+    if (resortProgressBar) {
+      resortProgressBar.style.width = `${(progress * 100).toFixed(1)}%`;
+    }
+
+    // Active stage determination (4 equal stages with smooth window)
+    let activeIndex = 0;
+    if (progress < 0.25) {
+      activeIndex = 0;
+    } else if (progress < 0.50) {
+      activeIndex = 1;
+    } else if (progress < 0.75) {
+      activeIndex = 2;
+    } else {
+      activeIndex = 3;
+    }
+
+    resortStages.forEach((stage, idx) => {
+      if (!stage) return;
+      if (idx === activeIndex) {
+        stage.classList.add('active');
+      } else {
+        stage.classList.remove('active');
+      }
+    });
+
+    resortStepPills.forEach((pill, idx) => {
+      pill.classList.toggle('active', idx === activeIndex);
+    });
+
+    if (resortStatusIndicator && statusTexts[activeIndex]) {
+      resortStatusIndicator.textContent = statusTexts[activeIndex];
+    }
+  }
+
+  window.addEventListener('scroll', updateResortScroll, { passive: true });
+  window.addEventListener('resize', updateResortScroll);
+  updateResortScroll();
+
+  // Click on step pills to jump to that stage
+  resortStepPills.forEach((pill, idx) => {
+    pill.addEventListener('click', () => {
+      if (!resortSection) return;
+      const sectionTop = resortSection.getBoundingClientRect().top + window.pageYOffset;
+      const sectionHeight = resortSection.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const maxScrollDistance = sectionHeight - windowHeight;
+      const targetRatios = [0.05, 0.35, 0.62, 0.90];
+      const targetScroll = sectionTop + (maxScrollDistance * targetRatios[idx]);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    });
+  });
+
+  // Interactive Booking Simulator in Stage 4
+  const villaPills = document.querySelectorAll('#resort-villa-options .booking-pill');
+  const nightsPills = document.querySelectorAll('#resort-nights-options .booking-pill');
+  const guestsPills = document.querySelectorAll('#resort-guests-options .booking-pill');
+  const resortCalcPrice = document.getElementById('resort-summary-price');
+  const resortCalcNightsText = document.getElementById('resort-summary-nights-text');
+  const resortModalBtn = document.getElementById('resort-modal-btn');
+
+  let selectedVillaRate = 2450;
+  let selectedVillaName = 'Overwater Grand Sunset';
+  let selectedNights = 7;
+  let selectedGuests = 2;
+
+  function updateResortCalculator() {
+    let discount = 1.0;
+    if (selectedNights === 7) discount = 0.90; // 10% discount
+    if (selectedNights === 10) discount = 0.85; // 15% discount
+
+    const guestsMultiplier = selectedGuests === 4 ? 1.35 : 1.0;
+    const total = Math.round(selectedVillaRate * selectedNights * discount * guestsMultiplier);
+
+    if (resortCalcPrice) {
+      resortCalcPrice.textContent = `$${total.toLocaleString('en-US')}`;
+    }
+
+    if (resortCalcNightsText) {
+      resortCalcNightsText.textContent = `${selectedNights} noites • ${selectedVillaName} • ${selectedGuests} hóspedes`;
+    }
+
+    if (resortModalBtn) {
+      const titleAttr = `Reserva Resort Maldivas — ${selectedVillaName} (${selectedNights} Noites, ${selectedGuests} Hóspedes) — Est. $${total.toLocaleString('en-US')}`;
+      resortModalBtn.setAttribute('data-dest-title', titleAttr);
+    }
+  }
+
+  villaPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      villaPills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedVillaRate = parseInt(pill.getAttribute('data-rate'), 10) || 2450;
+      const nameElem = pill.querySelector('.b-pill-name');
+      selectedVillaName = nameElem ? nameElem.textContent.trim() : 'Overwater Grand Sunset';
+      updateResortCalculator();
+    });
+  });
+
+  nightsPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      nightsPills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedNights = parseInt(pill.getAttribute('data-nights'), 10) || 7;
+      updateResortCalculator();
+    });
+  });
+
+  guestsPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      guestsPills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedGuests = parseInt(pill.getAttribute('data-guests'), 10) || 2;
+      updateResortCalculator();
+    });
+  });
+
+  updateResortCalculator();
+
+  /* ------------------------------------------------------------------------
      3. CINEMA VIDEO PLAYER CONTROLS
      ------------------------------------------------------------------------ */
   const video = document.getElementById('cinema-video');

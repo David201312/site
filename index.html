@@ -18,7 +18,7 @@
       <a class="brand" href="#top" aria-label="AERA Voyages Página Inicial">AERA<span>™</span></a>
       <nav aria-label="Navegação Principal">
         <a href="#destinos" class="active">Destinos</a>
-        <a href="#expedicoes">Expedições POV</a>
+        <a href="#resort-reservas">Resort & Reservas</a>
         <a href="#atelier">Atelier de Roteiro</a>
         <a href="#cinema">Cinema da Viagem</a>
       </nav>
@@ -246,59 +246,275 @@
   </div>
 
   <!-- ========================================================================
-       POV FILM EXPEDITIONS (STORY CARDS)
+       RESORT SHOWCASE & SCROLL-DRIVEN RESERVATIONS EXPERIENCE
        ======================================================================== -->
-  <section class="section-wrapper" id="expedicoes">
-    <div class="section-header-row">
-      <div>
-        <span class="eyebrow">Documentação Sensorial</span>
-        <h2 class="section-title">Expedições POV</h2>
-        <p class="section-desc">Testemunhe as perspectivas reais captadas por nossos fotógrafos e exploradores em cada horizonte.</p>
-      </div>
-      <div>
-        <span class="code-meta">Capítulos Cinematográficos</span>
-      </div>
-    </div>
+  <section class="resort-scroll-section" id="resort-reservas">
+    <div class="resort-sticky-box" id="resort-sticky-box">
 
-    <div class="pov-grid">
-      <!-- Story 1 -->
-      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição Costa Selvagem">
-        <img src="assets/images/expedition-coast.jpg" alt="Costa sob luz crepuscular">
-        <div class="pov-play-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-        </div>
-        <div class="pov-overlay">
-          <span class="pov-chapter">CAPÍTULO 01 • COSTA SELVAGEM (00:24)</span>
-          <h3 class="pov-film-title">Navegação silenciosa sob falésias ao crepúsculo</h3>
-          <p class="pov-film-desc">A brisa salina e o murmúrio das correntes oceânicas nas enseadas secretas.</p>
-        </div>
+      <!-- Background Resort Visual Canvas with Ambient Parallax -->
+      <div class="resort-visual-viewport">
+        <img class="resort-bg-image active" id="resort-bg-img" src="assets/images/resort-hero.jpg" alt="AERA Horizon Private Ocean Resort & Villas">
+        <div class="resort-ambient-overlay"></div>
+        <div class="resort-vignette-overlay"></div>
       </div>
 
-      <!-- Story 2 -->
-      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição O Silêncio das Dunas">
-        <img src="assets/images/expedition-dunes.jpg" alt="Dunas do deserto">
-        <div class="pov-play-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      <!-- Top Header & Step Progress Bar -->
+      <div class="resort-top-bar">
+        <div class="resort-title-group">
+          <div class="resort-badge-row">
+            <span class="eyebrow-accent">✦ Experiência Exclusiva</span>
+            <span class="resort-rating-pill">★ Forbes 5-Star Luxury 2026</span>
+          </div>
+          <h2 class="resort-main-title">AERA Horizon Ocean Sanctuary & Villas</h2>
         </div>
-        <div class="pov-overlay">
-          <span class="pov-chapter">CAPÍTULO 02 • O SILÊNCIO DAS DUNAS (00:38)</span>
-          <h3 class="pov-film-title">A imensidão dourada sob o domo das estrelas</h3>
-          <p class="pov-film-desc">Quando o vento cessa e o horizonte revela a vastidão intocada do deserto.</p>
+
+        <div class="resort-steps-nav">
+          <div class="resort-steps-pills">
+            <button type="button" class="resort-step-pill active" data-step="0">
+              <span class="step-num">01</span>
+              <span class="step-label">Panorama</span>
+            </button>
+            <button type="button" class="resort-step-pill" data-step="1">
+              <span class="step-num">02</span>
+              <span class="step-label">Acomodações</span>
+            </button>
+            <button type="button" class="resort-step-pill" data-step="2">
+              <span class="step-num">03</span>
+              <span class="step-label">Serviços & Políticas</span>
+            </button>
+            <button type="button" class="resort-step-pill" data-step="3">
+              <span class="step-num">04</span>
+              <span class="step-label">Reservar Estadia</span>
+            </button>
+          </div>
+          <div class="resort-progress-track">
+            <div class="resort-progress-bar" id="resort-progress-bar"></div>
+          </div>
         </div>
       </div>
 
-      <!-- Story 3 -->
-      <div class="pov-film-card" data-open-modal="true" data-dest-title="Expedição Dança dos Céus Polares">
-        <img src="assets/images/expedition-aurora.jpg" alt="Aurora boreal nos fiordes">
-        <div class="pov-play-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      <!-- Progressive Interactive Information Layers -->
+      <div class="resort-cards-container">
+
+        <!-- Stage 1: Panorama & Localização do Resort -->
+        <div class="resort-stage-card active" id="resort-stage-1">
+          <div class="stage-glass-inner">
+            <div class="stage-header-line">
+              <span class="stage-tag">Refúgio Atemporal</span>
+              <span class="stage-code">ATOL DE BAA • MALDIVAS</span>
+            </div>
+            <h3 class="stage-title">Um santuário privativo suspenso entre o oceano e o horizonte</h3>
+            <p class="stage-desc">
+              Erguido sobre recifes de corais preservados em plena Reserva da Biosfera UNESCO. 
+              Villas privativas com piscina de borda infinita, deque sobre a lagoa turquesa e privacidade absoluta para hóspedes que exigem discrição incomparável.
+            </p>
+            <div class="resort-highlights-grid">
+              <div class="highlight-item">
+                <span class="highlight-val">35 min</span>
+                <span class="highlight-lbl">Hidroavião Privativo de Malé</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-val">380 m²</span>
+                <span class="highlight-lbl">Área Média por Villa</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-val">24h</span>
+                <span class="highlight-lbl">Mordomo Pessoal Dedicado</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-val">100%</span>
+                <span class="highlight-lbl">Energia Solar & Sustentável</span>
+              </div>
+            </div>
+            <div class="stage-scroll-cta">
+              <span class="scroll-mouse-icon">
+                <span class="scroll-wheel"></span>
+              </span>
+              <span>Role o scroll do mouse para ver acomodações e valores de reserva ↓</span>
+            </div>
+          </div>
         </div>
-        <div class="pov-overlay">
-          <span class="pov-chapter">CAPÍTULO 03 • DANÇA POLAR (00:19)</span>
-          <h3 class="pov-film-title">O magnetismo celeste refletido em lagos de gelo</h3>
-          <p class="pov-film-desc">Cortinas esmeraldas e violetas em movimento contínuo sobre as montanhas.</p>
+
+        <!-- Stage 2: Acomodações & Conforto da Villa -->
+        <div class="resort-stage-card" id="resort-stage-2">
+          <div class="stage-glass-inner">
+            <div class="stage-header-line">
+              <span class="stage-tag">Acomodação Signature</span>
+              <span class="stage-code">OVERWATER GRAND SUNSET VILLA</span>
+            </div>
+            <h3 class="stage-title">Design biofílico e conforto imersivo sobre o mar</h3>
+            <p class="stage-desc">
+              Cada espaço foi minuciosamente lapidado para integrar a brisa marítima e o som relaxante das marés com a mais alta sofisticação hoteleira contemporânea.
+            </p>
+            <div class="suite-specs-list">
+              <div class="suite-spec-item">
+                <div class="spec-icon">🌊</div>
+                <div>
+                  <strong>Piscina Privativa de Borda Infinita</strong>
+                  <p>14 metros de raia com água doce aquecida, borda envidraçada e hidroterapia integrada.</p>
+                </div>
+              </div>
+              <div class="suite-spec-item">
+                <div class="spec-icon">✨</div>
+                <div>
+                  <strong>Deck com Redes Catamarã Suspensas</strong>
+                  <p>Acesso direto por escadaria privativa aos jardins de corais e espreguiçadeiras com sombra automatizada.</p>
+                </div>
+              </div>
+              <div class="suite-spec-item">
+                <div class="spec-icon">🛁</div>
+                <div>
+                  <strong>Banheiro Spa em Mármore Nero</strong>
+                  <p>Banheira de imersão esculpida à mão, ducha externa sob as estrelas e amenities botânicas exclusivas.</p>
+                </div>
+              </div>
+              <div class="suite-spec-item">
+                <div class="spec-icon">🍷</div>
+                <div>
+                  <strong>Adega Climatizada & Bar de Coquetelaria</strong>
+                  <p>Seleção Grand Cru curada por sommelier internacional e menu de travesseiros com aromaterapia personalizada.</p>
+                </div>
+              </div>
+            </div>
+            <div class="stage-footer-meta">
+              <span class="base-rate-text">Diária base a partir de <strong>US$ 2.450 / noite</strong> (All-Inclusive Premium)</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Stage 3: Serviços Inclusos & Políticas da Reserva -->
+        <div class="resort-stage-card" id="resort-stage-3">
+          <div class="stage-glass-inner">
+            <div class="stage-header-line">
+              <span class="stage-tag">Garantias & Benefícios</span>
+              <span class="stage-code">ESTADIA COM TOTAL TRANQUILIDADE</span>
+            </div>
+            <h3 class="stage-title">Tudo o que sua reserva contempla com excelência</h3>
+            <p class="stage-desc">
+              Zero custos ocultos. Ao reservar através da curadoria AERA, sua jornada é blindada com privilégios de alto padrão do início ao fim.
+            </p>
+            <div class="benefits-grid">
+              <div class="benefit-box">
+                <div class="benefit-icon-badge">🍽️</div>
+                <div class="benefit-text">
+                  <h4>Alta Gastronomia All-Inclusive</h4>
+                  <p>4 restaurantes de autor estrelados Michelin, jantares privativos na praia e café da manhã flutuante na piscina.</p>
+                </div>
+              </div>
+              <div class="benefit-box">
+                <div class="benefit-icon-badge">🛥️</div>
+                <div class="benefit-text">
+                  <h4>Expedições Náuticas Privadas</h4>
+                  <p>Uso diário de iate de 60 pés com tripulação, mergulho com raias-manta e navegação ao pôr do sol com champanhe.</p>
+                </div>
+              </div>
+              <div class="benefit-box">
+                <div class="benefit-icon-badge">✈️</div>
+                <div class="benefit-text">
+                  <h4>Transfers Aéreos Inclusos</h4>
+                  <p>Voos de ida e volta em hidroavião executivo bimotor entre Malé e o resort já inclusos para todos os hóspedes.</p>
+                </div>
+              </div>
+              <div class="benefit-box">
+                <div class="benefit-icon-badge">🛡️</div>
+                <div class="benefit-text">
+                  <h4>Cancelamento Flexível & Seguro</h4>
+                  <p>Reembolso integral garantido até 14 dias antes do check-in e seguro viagem internacional de alta cobertura integrado.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4: Simulador Interativo & Solicitação de Reserva Imediata -->
+        <div class="resort-stage-card" id="resort-stage-4">
+          <div class="stage-glass-inner booking-stage-inner">
+            <div class="stage-header-line">
+              <span class="stage-tag active-tag">Disponibilidade Confirmada</span>
+              <span class="stage-code">TEMPORADA 2026 / 2027</span>
+            </div>
+            <h3 class="stage-title">Personalize e Solicite Sua Reserva</h3>
+            <p class="stage-desc">
+              Escolha sua configuração ideal. Nossos concierges confirmarão as datas e organizarão os transfers privativos imediatamente.
+            </p>
+
+            <div class="booking-config-grid">
+              <!-- Villa Type Selection -->
+              <div class="booking-field-group">
+                <label class="booking-field-label">Categoria de Villa</label>
+                <div class="booking-pills-row" id="resort-villa-options">
+                  <button type="button" class="booking-pill selected" data-villa="overwater" data-rate="2450">
+                    <span class="b-pill-name">Overwater Grand Sunset</span>
+                    <span class="b-pill-rate">$2.450 / noite</span>
+                  </button>
+                  <button type="button" class="booking-pill" data-villa="beach" data-rate="3100">
+                    <span class="b-pill-name">Beach Sanctuary Pavilion</span>
+                    <span class="b-pill-rate">$3.100 / noite</span>
+                  </button>
+                  <button type="button" class="booking-pill" data-villa="presidential" data-rate="5600">
+                    <span class="b-pill-name">Royal Island Residence</span>
+                    <span class="b-pill-rate">$5.600 / noite</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Nights and Guests Row -->
+              <div class="booking-row-split">
+                <div class="booking-field-group">
+                  <label class="booking-field-label">Duração da Estadia</label>
+                  <div class="booking-pills-row" id="resort-nights-options">
+                    <button type="button" class="booking-pill" data-nights="5">5 Noites</button>
+                    <button type="button" class="booking-pill selected" data-nights="7">7 Noites <small class="pill-badge">-10% Off</small></button>
+                    <button type="button" class="booking-pill" data-nights="10">10 Noites <small class="pill-badge">Iate Incluso</small></button>
+                  </div>
+                </div>
+
+                <div class="booking-field-group">
+                  <label class="booking-field-label">Hóspedes</label>
+                  <div class="booking-pills-row" id="resort-guests-options">
+                    <button type="button" class="booking-pill selected" data-guests="2">2 Hóspedes (Casal VIP)</button>
+                    <button type="button" class="booking-pill" data-guests="4">4 Hóspedes (Família / Grupo)</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Price & Perks Summary Box -->
+              <div class="booking-summary-banner">
+                <div class="b-summary-left">
+                  <span class="b-summary-subtitle">Investimento Estimado com All-Inclusive</span>
+                  <div class="b-summary-price" id="resort-summary-price">$15.435</div>
+                  <span class="b-summary-perk" id="resort-summary-nights-text">7 noites • Overwater Grand Sunset • 2 hóspedes</span>
+                </div>
+                <div class="b-summary-badges">
+                  <span class="b-perk-badge">✓ Hidroavião Incluso</span>
+                  <span class="b-perk-badge">✓ 4 Restaurantes Michelin</span>
+                  <span class="b-perk-badge">✓ Cancelamento Gratuito</span>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="booking-actions-row">
+                <button type="button" class="cta-btn-primary resort-book-trigger" id="resort-modal-btn" data-open-modal="true" data-dest-title="Reserva Resort Maldivas — Overwater Grand Sunset (7 Noites)">
+                  <span>Solicitar Reserva com Concierge</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <a href="#atelier" class="cta-btn-secondary">
+                  <span>Customizar no Atelier</span>
+                  <span>↓</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
+
+      <!-- Bottom Floating Direction / Hint Bar -->
+      <div class="resort-bottom-hint">
+        <span id="resort-status-indicator">Etapa 1 de 4 • Role o mouse para descobrir o resort e as informações de reserva</span>
+      </div>
+
     </div>
   </section>
 
@@ -564,7 +780,7 @@
           <div class="footer-col-title">Atelier</div>
           <ul class="footer-links-list">
             <li><a href="#atelier">Configurador de Roteiro</a></li>
-            <li><a href="#expedicoes">Diários POV</a></li>
+            <li><a href="#resort-reservas">Resort & Reservas</a></li>
             <li><a href="#cinema">Sessão Cinema</a></li>
             <li><a href="#" data-open-modal="true">Fale com um Concierge</a></li>
           </ul>

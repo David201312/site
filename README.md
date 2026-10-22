@@ -10,7 +10,7 @@ Ao navegar pela página com o **scroll do mouse**:
 1. A tela fixa (*sticky viewport*) na seção **Destinos Singulares**.
 2. Conforme você gira a roda do mouse para baixo, os cartões de destinos deslizam suavemente da **esquerda para a direita** (percorrendo Santorini, Malta, Tóquio, Paris e Berlim).
 3. Uma barra de progresso inferior acompanha o percurso (`01 / 05` até `05 / 05`).
-4. Ao concluir a galeria horizontal de destinos, a página desengata automaticamente e retoma o scroll vertical natural para as próximas seções (*Expedições POV, Atelier de Roteiro, Cinema da Viagem e Rodapé*).
+4. Ao concluir a galeria horizontal de destinos, a página desengata automaticamente e retoma o scroll vertical natural para as próximas seções (*Resort & Reservas no Scroll, Atelier de Roteiro, Cinema da Viagem e Rodapé*).
 
 ---
 
@@ -44,8 +44,8 @@ As imagens fornecidas em `C:\Users\David\OneDrive\Imagens\imagens site` foram in
    - Translação horizontal responsiva acionada pelo scroll do mouse com indicador de progresso e controles auxiliares.
 3. **Destinations Showcase (Spectrum Product Cards)**:
    - Cartões com visual imersivo, zoom fotográfico ao passar o mouse, badges, investimento e itinerário.
-4. **Expedições POV (Cinematic Story Cards)**:
-   - Cartões fotográficos de documentação visual com marcadores de capítulos documentais.
+4. **Resort & Reservas no Scroll (`.resort-scroll-section`, `.resort-sticky-box`)**:
+   - Showcase cinematográfico de resort de luxo (Overwater Sanctuary nas Maldivas) acionado pelo scroll do mouse, revelando progressivamente 4 etapas: Visão Geral e Arquitetura, Acomodações e Suítes, Serviços e Políticas de Reserva, e Simulador Interativo com cálculo de investimento em tempo real e abertura de reserva pelo Concierge.
 5. **Atelier de Roteiro Interativo (`.atelier-window` / `.home-window`)**:
    - Janela com barra de ferramentas, perfil de concierge chefe (*Sofia Laurent*), rail de navegação lateral e simulador interativo em tempo real para os 5 destinos.
 6. **Cinema da Viagem (`.cinema-player-wrapper`)**:
