@@ -257,9 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
   updateResortCalculator();
 
   /* ------------------------------------------------------------------------
-     3. CINEMA VIDEO PLAYER CONTROLS
+     3. CINEMA VIDEO PLAYER & DESTINATION SELECTION CONTROLLER
      ------------------------------------------------------------------------ */
   const video = document.getElementById('cinema-video');
+  const videoSource = document.getElementById('cinema-video-source');
   const playCenterBtn = document.getElementById('cinema-play-center');
   const playControlBtn = document.getElementById('cinema-play-ctrl');
   const playControlIcon = document.getElementById('cinema-play-icon');
@@ -268,20 +269,158 @@ document.addEventListener('DOMContentLoaded', () => {
   const timecodeDisplay = document.getElementById('cinema-timecode');
   const muteBtn = document.getElementById('cinema-mute-btn');
   const fullscreenBtn = document.getElementById('cinema-fullscreen-btn');
+  const cinemaOverlayTag = document.getElementById('cinema-overlay-tag');
+  const cinemaOverlayTitle = document.getElementById('cinema-overlay-title');
+  const cinemaActiveDestName = document.getElementById('cinema-active-dest-name');
+  const cinemaDestDescription = document.getElementById('cinema-dest-description');
+  const cinemaPills = document.querySelectorAll('.cinema-pill');
+
+  const destinationVideos = {
+    'santorini': {
+      videoSrc: 'assets/oceans.mp4',
+      posterSrc: 'assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg',
+      tag: 'Mediterrâneo Exclusivo • Grécia',
+      title: 'Santorini & Domos Azuis de Oia',
+      name: 'Santorini • Grécia',
+      desc: 'Navegação pelas falésias vulcânicas e águas azul-índigo do Mar Egeu, com vilas privativas esculpidas na caldeira de Oia.'
+    },
+    'malta': {
+      videoSrc: 'assets/oceans.mp4',
+      posterSrc: 'assets/images/o-que-fazer-malta-Blue_Lagoon.jpg',
+      tag: 'Costas & Ilhas Secretas • Malta',
+      title: 'Blue Lagoon & Ilhas Maltesas',
+      name: 'Blue Lagoon • Malta',
+      desc: 'Expedição privativa pelas baías translúcidas de Comino e o legado barroco dos Cavaleiros de Malta em Valletta.'
+    },
+    'toquio': {
+      videoSrc: 'assets/tokyo.mp4',
+      posterSrc: 'assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg',
+      tag: 'Cultura & Vanguarda • Japão',
+      title: 'Tóquio Futurista & Monte Fuji',
+      name: 'Tóquio • Japão',
+      desc: 'A imersão cosmopolita entre néons, templos milenares e ryokans com vista panorâmica para o Monte Fuji.'
+    },
+    'maldivas': {
+      videoSrc: 'assets/maldives.mp4',
+      posterSrc: 'assets/images/resort-hero.jpg',
+      tag: 'Santuário Privado • Maldivas',
+      title: 'Atol de Baa & Ocean Villas',
+      name: 'Atol de Baa • Maldivas',
+      desc: 'Voo cênico de hidroavião sobre os atóis de coral e estadia nas mais exclusivas vilas flutuantes do Oceano Índico.'
+    },
+    'paris': {
+      videoSrc: 'assets/oceans.mp4',
+      posterSrc: 'assets/images/guia-destinos-voesimples-europa-franca-paris-400x400.jpg',
+      tag: 'Alta Gastronomia & Arte • França',
+      title: 'Paris Alta Costura & Castelos do Loire',
+      name: 'Paris • França',
+      desc: 'Sobrevos de helicóptero sobre os castelos do Vale do Loire e terraço privativo de frente para a Torre Eiffel.'
+    },
+    'berlim': {
+      videoSrc: 'assets/tokyo.mp4',
+      posterSrc: 'assets/images/images.jpg',
+      tag: 'Arquitetura & Design • Alemanha',
+      title: 'Berlim Contemporânea & Bauhaus',
+      name: 'Berlim • Alemanha',
+      desc: 'Vanguarda arquitetônica em Mitte, navegação solar pelo Rio Spree e acessos fechados às maiores galerias de arte contemporânea.'
+    }
+  };
+
+  let currentDestVideoKey = 'santorini';
+
+  function playVideoSafely() {
+    if (!video) return;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        if (playCenterBtn) playCenterBtn.style.opacity = '0';
+        if (playControlIcon) {
+          playControlIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        }
+      }).catch((err) => {
+        console.warn('Autoplay restricted by browser, fallback to muted:', err);
+        video.muted = true;
+        if (muteBtn) muteBtn.style.color = '#9c9da7';
+        video.play().then(() => {
+          if (playCenterBtn) playCenterBtn.style.opacity = '0';
+          if (playControlIcon) {
+            playControlIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+          }
+        }).catch(e => console.error('Play retry error:', e));
+      });
+    }
+  }
+
+  function pauseVideoSafely() {
+    if (!video) return;
+    video.pause();
+    if (playCenterBtn) playCenterBtn.style.opacity = '1';
+    if (playControlIcon) {
+      playControlIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    }
+  }
 
   function togglePlay() {
     if (!video) return;
     if (video.paused || video.ended) {
-      video.play();
-      if (playCenterBtn) playCenterBtn.style.opacity = '0';
-      if (playControlIcon) {
-        playControlIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      }
+      playVideoSafely();
     } else {
-      video.pause();
-      if (playCenterBtn) playCenterBtn.style.opacity = '1';
-      if (playControlIcon) {
-        playControlIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      pauseVideoSafely();
+    }
+  }
+
+  function selectDestinationVideo(destKey, shouldAutoPlay = true, shouldScroll = false) {
+    const data = destinationVideos[destKey];
+    if (!data || !video) return;
+
+    currentDestVideoKey = destKey;
+
+    // Update active pill state
+    cinemaPills.forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('data-video-option') === destKey);
+    });
+
+    // Update overlay text and info
+    if (cinemaOverlayTag) cinemaOverlayTag.textContent = data.tag;
+    if (cinemaOverlayTitle) cinemaOverlayTitle.textContent = data.title;
+    if (cinemaActiveDestName) cinemaActiveDestName.textContent = data.name;
+    if (cinemaDestDescription) cinemaDestDescription.textContent = data.desc;
+
+    // Update poster
+    video.setAttribute('poster', data.posterSrc);
+
+    // Update video source
+    const currentSrc = video.currentSrc || (videoSource ? videoSource.getAttribute('src') : '');
+    const isDifferentSrc = !currentSrc.endsWith(data.videoSrc);
+
+    if (isDifferentSrc) {
+      if (videoSource) {
+        videoSource.setAttribute('src', data.videoSrc);
+      }
+      video.src = data.videoSrc;
+      video.load();
+    }
+
+    if (shouldScroll) {
+      const cinemaSection = document.getElementById('cinema');
+      if (cinemaSection) {
+        cinemaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    if (shouldAutoPlay) {
+      if (isDifferentSrc) {
+        const onLoaded = () => {
+          playVideoSafely();
+          video.removeEventListener('loadeddata', onLoaded);
+        };
+        video.addEventListener('loadeddata', onLoaded, { once: true });
+        setTimeout(() => {
+          playVideoSafely();
+        }, 350);
+      } else {
+        video.currentTime = 0;
+        playVideoSafely();
       }
     }
   }
@@ -340,6 +479,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Click on destination pills in Cinema section
+  cinemaPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const option = pill.getAttribute('data-video-option');
+      if (option) {
+        selectDestinationVideo(option, true, false);
+      }
+    });
+  });
+
+  // Click on "Assistir Filme" buttons on horizontal scroll cards
+  const cardPlayButtons = document.querySelectorAll('.card-play-video-btn');
+  cardPlayButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const target = btn.getAttribute('data-video-target');
+      if (target) {
+        selectDestinationVideo(target, true, true);
+      }
+    });
+  });
+
+  // Click on horizontal scroll cards
+  const scrollCards = document.querySelectorAll('.horizontal-scroll-card[data-dest-key]');
+  scrollCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-open-modal]')) return;
+      const key = card.getAttribute('data-dest-key');
+      if (key) {
+        selectDestinationVideo(key, true, true);
+      }
+    });
+  });
+
   const heroPlayTrigger = document.getElementById('hero-play-trigger');
   if (heroPlayTrigger) {
     heroPlayTrigger.addEventListener('click', () => {
@@ -347,8 +520,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cinemaSection) {
         cinemaSection.scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
-          if (video && video.paused) togglePlay();
-        }, 800);
+          selectDestinationVideo('santorini', true, false);
+        }, 600);
       }
     });
   }

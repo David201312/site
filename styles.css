@@ -606,6 +606,92 @@ body {
   color: #fff;
 }
 
+.card-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-play-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: rgba(90, 104, 201, 0.18);
+  border: 1px solid rgba(90, 104, 201, 0.45);
+  border-radius: 8px;
+  color: #d1d8ff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: inherit;
+}
+
+.card-play-video-btn:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(90, 104, 201, 0.4);
+}
+
+.card-play-video-btn svg {
+  transition: transform 0.2s;
+}
+
+.card-play-video-btn:hover svg {
+  transform: scale(1.15);
+}
+
+.card-consult-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 11px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--ink-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.card-consult-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.card-image-play-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(8, 9, 12, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  z-index: 3;
+}
+
+.horizontal-scroll-card:hover .card-image-play-badge {
+  background: var(--blue);
+  border-color: var(--blue);
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(90, 104, 201, 0.5);
+}
+
 /* Horizontal Progress Footer */
 .horizontal-progress-bar-wrap {
   padding: 0 var(--gutter);
@@ -1528,6 +1614,103 @@ body {
 /* --------------------------------------------------------------------------
    CINEMA PLAYER SECTION
    -------------------------------------------------------------------------- */
+.cinema-selector-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.cinema-selector-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grey);
+  white-space: nowrap;
+}
+
+.cinema-dest-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cinema-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ink-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: inherit;
+}
+
+.cinema-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.cinema-pill.active {
+  background: rgba(90, 104, 201, 0.25);
+  border-color: var(--blue);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(90, 104, 201, 0.35);
+}
+
+.cinema-pill svg {
+  color: var(--blue);
+  transition: transform 0.2s;
+}
+
+.cinema-pill.active svg {
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.cinema-location-overlay {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+  background: rgba(8, 9, 12, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cinema-overlay-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7b88e8;
+}
+
+.cinema-overlay-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
 .cinema-player-wrapper {
   background: #0d0e12;
   border: 1px solid rgba(255, 255, 255, 0.12);
