@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const destinationVideos = {
     'santorini': {
-      videoSrc: 'assets/oceans.mp4',
+      videoSrc: 'assets/santorini.mp4',
       posterSrc: 'assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg',
       tag: 'Mediterrâneo Exclusivo • Grécia',
       title: 'Santorini & Domos Azuis de Oia',
