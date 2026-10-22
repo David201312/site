@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Sobrevos de helicóptero sobre os castelos do Vale do Loire e terraço privativo de frente para a Torre Eiffel.'
     },
     'berlim': {
-      videoSrc: 'assets/tokyo.mp4',
+      videoSrc: 'assets/berlin.mp4',
       posterSrc: 'assets/images/images.jpg',
       tag: 'Arquitetura & Design • Alemanha',
       title: 'Berlim Contemporânea & Bauhaus',
