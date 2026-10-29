@@ -33,57 +33,20 @@
   </header>
 
   <!-- ========================================================================
-       HERO SECTION — ATMOSPHERIC IMMERSION
+       3D TRAVEL PAMPHLET HERO EXPERIENCE — PINNED SCROLL ZOOM & ROTATION
        ======================================================================== -->
-  <section class="hero-section" id="top">
-    <!-- Living Ambient Backgrounds -->
-    <div class="hero-background-canvas" aria-hidden="true">
-      <div class="hero-bg-image active" style="background-image: url('assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg');"></div>
-      <div class="hero-bg-image" style="background-image: url('assets/images/o-que-fazer-malta-Blue_Lagoon.jpg');"></div>
-      <div class="hero-bg-image" style="background-image: url('assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg');"></div>
-      <div class="hero-atmosphere-overlay"></div>
-    </div>
+  <section class="pamphlet-scroll-section" id="top">
+    <div class="pamphlet-sticky-box" id="pamphlet-sticky-box">
 
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>Temporada Exclusiva 2026/2027 • Vagas Limitadas</span>
+      <!-- Ambient Living Background Canvas -->
+      <div class="pamphlet-ambient-backdrop" aria-hidden="true">
+        <div class="pamphlet-bg-glow"></div>
+        <div class="pamphlet-bg-grid"></div>
       </div>
 
-      <h1 class="intro-headline">
-        Horizontes raros.<br>
-        Jornadas sob medida.
-      </h1>
+      <!-- WebGL 3D Canvas -->
+      <canvas id="pamphlet-canvas" class="pamphlet-canvas"></canvas>
 
-      <p class="hero-quote editorial-quote">
-        “Não elaboramos apenas itinerários. Desenhamos experiências sensoriais e memórias indeléveis nos recantos mais sublimes da Terra.”
-      </p>
-
-      <div class="hero-actions">
-        <button class="film-play-btn" id="hero-play-trigger">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-          <span>Assistir Filme de Expedição</span>
-        </button>
-        <a href="#destinos" class="catalog-tag">
-          <span>Explorar Destinos no Scroll</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-      </div>
-
-      <div class="hero-stats-bar">
-        <div class="stat-item">
-          <span class="stat-val">+48</span>
-          <span>Expedições Privadas Globais</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-val">100%</span>
-          <span>Roteiros Personalizados</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-val">24/7</span>
-          <span>Concierge Privado Dedicado</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -902,6 +865,8 @@
     </div>
   </footer>
 
+  <script src="assets/three.min.js"></script>
+  <script src="pamphlet-3d.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -270,6 +270,195 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   3D TRAVEL PAMPHLET HERO SECTION — INTERACTIVE ROTATION & SCROLL ZOOM
+   -------------------------------------------------------------------------- */
+.pamphlet-scroll-section {
+  position: relative;
+  height: 250vh;
+  background: var(--paper);
+  z-index: 2;
+}
+
+.pamphlet-sticky-box {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, #0d101e 0%, #07080d 65%, #040508 100%);
+  transition: opacity 0.25s ease-out;
+}
+
+.pamphlet-ambient-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pamphlet-bg-glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(90, 104, 201, 0.22) 0%, rgba(197, 160, 89, 0.08) 45%, transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.pamphlet-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  pointer-events: none;
+}
+
+.pamphlet-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: grab;
+  touch-action: none;
+}
+
+.pamphlet-canvas:active {
+  cursor: grabbing;
+}
+
+.pamphlet-intro-overlay {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 8px var(--gutter);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.pamphlet-intro-overlay > * {
+  pointer-events: auto;
+}
+
+.pamphlet-intro-overlay .intro-headline {
+  font-size: clamp(20px, 2.2vw, 28px);
+  margin-top: 8px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.pamphlet-intro-overlay .hero-quote {
+  font-size: clamp(12px, 1.2vw, 15px);
+  max-width: 600px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  opacity: 0.82;
+}
+
+.pamphlet-intro-overlay .hero-actions {
+  margin-top: 0;
+  gap: 12px;
+}
+
+.pamphlet-intro-overlay .hero-stats-bar {
+  display: none;
+}
+
+/* Floating 3D Interaction & Scroll Hint Pill */
+.pamphlet-hint-pill {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  background: rgba(14, 16, 24, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 9999px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(90, 104, 201, 0.2);
+  font-size: 12px;
+  color: var(--ink-secondary);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.pamphlet-pill-action {
+  background: transparent;
+  border: 0;
+  color: #dfba73;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: color 0.2s, transform 0.2s;
+  font-family: inherit;
+}
+
+.pamphlet-pill-action:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.pamphlet-pill-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.pamphlet-pill-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #cfd3df;
+  font-weight: 500;
+}
+
+.pamphlet-pill-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #8c9eff;
+  font-weight: 600;
+}
+
+.scroll-arrow-anim {
+  animation: bounceDown 1.6s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* --------------------------------------------------------------------------
    HERO SECTION
    -------------------------------------------------------------------------- */
 .hero-section {
