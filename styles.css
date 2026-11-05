@@ -274,9 +274,9 @@ body {
    -------------------------------------------------------------------------- */
 .pamphlet-scroll-section {
   position: relative;
-  height: 250vh;
+  height: 170vh;
   background: var(--paper);
-  z-index: 2;
+  z-index: 10;
 }
 
 .pamphlet-sticky-box {
@@ -288,6 +288,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
   background: radial-gradient(circle at 50% 40%, #0d101e 0%, #07080d 65%, #040508 100%);
   transition: opacity 0.25s ease-out;
 }
@@ -614,6 +615,8 @@ body {
   position: relative;
   height: 380vh; /* Travel distance for vertical scroll to slide horizontally */
   background: var(--paper);
+  margin-top: 0;
+  z-index: 1;
 }
 
 .horizontal-sticky-box {
@@ -624,9 +627,10 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 84px 0 32px 0;
+  justify-content: flex-start;
+  padding: 56px 0 16px 0;
   box-sizing: border-box;
+  background: radial-gradient(circle at 50% 20%, #0d101e 0%, #07080d 65%, #040508 100%);
 }
 
 .horizontal-header-bar {
@@ -635,11 +639,12 @@ body {
   width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
   flex-shrink: 0;
   gap: 20px;
   flex-wrap: wrap;
+  min-height: 32px;
 }
 
 .horizontal-track-container {
@@ -648,7 +653,8 @@ body {
   position: relative;
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 20px;
 }
 
 .horizontal-cards-track {
@@ -2216,4 +2222,9 @@ body {
   .cinema-screen {
     height: 320px;
   }
+}
+
+/* Hide empty destinations header bar */
+.horizontal-header-bar > div:first-child:has(h2:empty) {
+  display: none;
 }

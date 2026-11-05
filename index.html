@@ -56,18 +56,11 @@
   <div class="horizontal-scroll-section" id="destinos-scroll-section">
     <div class="horizontal-sticky-box" id="destinos-sticky-box">
 
-      <!-- Header Row -->
-      <div class="horizontal-header-bar">
-        <div>
-          <span class="eyebrow">Coleção Autoral 2026/2027</span>
-          <h2 class="section-title" id="destinos">Destinos Singulares</h2>
-          <p class="section-desc">Desça o scroll do mouse: a tela fixa e os destinos deslizam horizontalmente da esquerda para a direita até o fim do percurso.</p>
-        </div>
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="code-meta" style="margin-right: 6px;">Scroll Pinned Track</span>
-          <button class="dialog-close-btn" id="dest-prev-btn" aria-label="Destino Anterior" style="position: static; width: 38px; height: 38px;">←</button>
-          <button class="dialog-close-btn" id="dest-next-btn" aria-label="Próximo Destino" style="position: static; width: 38px; height: 38px;">→</button>
-        </div>
+      <!-- Anchor for nav links + minimal nav buttons -->
+      <span id="destinos" style="position:absolute;top:0;"></span>
+      <div style="position:absolute;top:16px;right:var(--gutter);display:flex;align-items:center;gap:8px;z-index:10;">
+        <button class="dialog-close-btn" id="dest-prev-btn" aria-label="Destino Anterior" style="position: static; width: 36px; height: 36px; opacity: 0.6;">←</button>
+        <button class="dialog-close-btn" id="dest-next-btn" aria-label="Próximo Destino" style="position: static; width: 36px; height: 36px; opacity: 0.6;">→</button>
       </div>
 
       <!-- Horizontal Cards Track Container -->

@@ -548,65 +548,6 @@
     texBack.center.set(0.5, 0.5);
     texBack.rotation = Math.PI;
 
-    // Asynchronously load real images into the canvases for photorealism!
-    function loadAndDrawImage(imgUrl, canvasData, drawFn, texture) {
-      const img = new Image();
-      img.onload = () => {
-        const ctx = canvasData.canvas.getContext('2d');
-        drawFn(ctx, img, canvasData);
-        texture.needsUpdate = true;
-      };
-      img.src = imgUrl;
-    }
-
-    // Draw Santorini photo on Front Cover & Inside Left
-    loadAndDrawImage('assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg', frontData, (ctx, img, d) => {
-      ctx.save();
-      ctx.drawImage(img, d.photoX, d.photoY, d.photoW, d.photoH);
-      ctx.strokeStyle = '#c5a059';
-      ctx.lineWidth = 3;
-      ctx.strokeRect(d.photoX, d.photoY, d.photoW, d.photoH);
-      ctx.restore();
-    }, texFront);
-
-    loadAndDrawImage('assets/images/lugares-mais-lindos-do-mundo-4-scaled.jpg', insideLeftData, (ctx, img, d) => {
-      ctx.save();
-      ctx.drawImage(img, d.pX, d.pY, d.pW, d.pH);
-      ctx.strokeStyle = '#c5a059';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(d.pX, d.pY, d.pW, d.pH);
-      ctx.restore();
-    }, texInLeft);
-
-    // Draw Malta & Tokyo on Inside Center
-    loadAndDrawImage('assets/images/o-que-fazer-malta-Blue_Lagoon.jpg', insideCenterData, (ctx, img, d) => {
-      ctx.save();
-      ctx.drawImage(img, d.mX, d.mY, d.mW, d.mH);
-      ctx.strokeStyle = '#c5a059';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(d.mX, d.mY, d.mW, d.mH);
-      ctx.restore();
-    }, texInCenter);
-
-    loadAndDrawImage('assets/images/INSPIR-M-0524-Japan-Tokyo-JMelgoza3.jpg', insideCenterData, (ctx, img, d) => {
-      ctx.save();
-      ctx.drawImage(img, d.tX, d.tY, d.tW, d.tH);
-      ctx.strokeStyle = '#c5a059';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(d.tX, d.tY, d.tW, d.tH);
-      ctx.restore();
-    }, texInCenter);
-
-    // Draw Maldives on Inside Right
-    loadAndDrawImage('assets/images/resort-hero.jpg', insideRightData, (ctx, img, d) => {
-      ctx.save();
-      ctx.drawImage(img, d.pX, d.pY, d.pW, d.pH);
-      ctx.strokeStyle = '#c5a059';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(d.pX, d.pY, d.pW, d.pH);
-      ctx.restore();
-    }, texInRight);
-
     // --- THREE.JS SCENE SETUP ---
     const scene = new THREE.Scene();
 
@@ -908,10 +849,10 @@
       // Normal camera distance: 4.4
       // Zoomed in distance: 1.15 (super close, filling screen with destination details)
       let targetCameraZ = 4.4;
-      if (scrollProgress > 0.25) {
-        const zoomRatio = Math.min(1, Math.max(0, (scrollProgress - 0.25) / 0.65));
+      if (scrollProgress > 0.20) {
+        const zoomRatio = Math.min(1, Math.max(0, (scrollProgress - 0.20) / 0.58));
         const easedZoom = zoomRatio * zoomRatio * (3 - 2 * zoomRatio); // Smoothstep
-        targetCameraZ = 4.4 - (easedZoom * 3.25); // Drops to 1.15!
+        targetCameraZ = 4.15 - (easedZoom * 3.0); // Drops to ~1.15
       }
       camera.position.z += (targetCameraZ - camera.position.z) * 0.1;
 
@@ -932,8 +873,8 @@
       // Viewport opacity fade as it merges into live destinations gallery
       const viewport = document.getElementById('pamphlet-sticky-box');
       if (viewport) {
-        if (scrollProgress > 0.90) {
-          const exitRatio = (scrollProgress - 0.90) / 0.10;
+        if (scrollProgress > 0.78) {
+          const exitRatio = (scrollProgress - 0.78) / 0.22;
           viewport.style.opacity = Math.max(0, 1 - exitRatio).toString();
         } else {
           viewport.style.opacity = '1';
